@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+
 from django.shortcuts import render, render_to_response
 from django.http import HttpResponseRedirect
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from restapi.models import *
+from django.db.models import Q
 
 # Create your views here.
 def registration(request):
@@ -38,6 +40,27 @@ class userDetail(APIView):
             final.append(data)
         #return Response(final, status=status.HTTP_200_OK)
         return render(request, 'userdetail.html', {'data':final, 'text':"This is User Table"})
+
+
+
+
+class userQuery(APIView):
+
+    def get(self, request):
+        final = []
+        name = request.GET.get('name', '')
+        res = Info.objects.filter(Q(first_name__contains=name) | Q(last_name__contains=name))
+        for item in res:
+            data = {}
+            data['id'] = item.id
+            data['first_name'] = item.first_name
+            data['last_name'] = item.last_name
+            data['age'] = item.age
+            data['address'] = item.address
+            data['salary'] = item.salary
+            final.append(data)
+        #return Response(final, status=status.HTTP_200_OK)
+        return render(request, 'usersearch.html', {'data':final, 'text':"This is User Table"})
 
 class dataPassing(APIView):
 	def get(self,request):
