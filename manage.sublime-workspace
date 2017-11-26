@@ -1,0 +1,376 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"f",
+				"fcontent"
+			],
+			[
+				"ra",
+				"rainfall"
+			],
+			[
+				"press",
+				"pressure"
+			],
+			[
+				"prin",
+				"print_level_order"
+			],
+			[
+				"pri",
+				"print_given_level"
+			],
+			[
+				"l",
+				"level"
+			],
+			[
+				"pr",
+				"prnt"
+			],
+			[
+				"de",
+				"delete"
+			],
+			[
+				"size",
+				"sizeof"
+			],
+			[
+				"print",
+				"printf	printf …"
+			],
+			[
+				"Ar",
+				"Argument"
+			],
+			[
+				"ar",
+				"argv"
+			],
+			[
+				"file",
+				"file_merge"
+			],
+			[
+				"arg",
+				"argc"
+			],
+			[
+				"fil",
+				"file2"
+			],
+			[
+				"st",
+				"struct	struct"
+			],
+			[
+				"str",
+				"strcpy"
+			],
+			[
+				"stu",
+				"student1"
+			],
+			[
+				"f2",
+				"f2line"
+			],
+			[
+				"pa",
+				"partitionindex"
+			],
+			[
+				"par",
+				"partition"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+			"print 'l'",
+			"ls"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/sumit/PROGRAMS/python/class.py",
+		"/home/sumit/helloworld/restapi/apps.py",
+		"/home/sumit/helloworld/restapi/tests.py",
+		"/media/sumit/54CAA6E0CAA6BD9C/cse/project/AgroAnalytics/AgroAnalytics/README.md",
+		"/home/sumit/finalyearproject/datacrops.py",
+		"/home/sumit/finalyearproject/steps.txt",
+		"/media/sumit/78027DBF027D82C4/Downloads/districts.txt",
+		"/home/sumit/finalyearproject/tempvellore.cisv",
+		"/home/sumit/finalyearproject/pressurevellore.cisv",
+		"/home/sumit/.cache/.fr-WG5EuD/first.tcl",
+		"/home/sumit/Dynamic_simulation/simulate.py",
+		"/home/sumit/Dynamic_simulation/apm.py",
+		"/home/sumit/PROGRAMS/data-structures/tree_traversal.c",
+		"/home/sumit/PROGRAMS/data-structures/linked_list.c",
+		"/home/sumit/PROGRAMS/data-structures/detect_loop.c",
+		"/home/sumit/PROGRAMS/practice/input_test.c",
+		"/home/sumit/PROGRAMS/ds/llsort.c",
+		"/home/sumit/PROGRAMS/practice/structure.c",
+		"/home/sumit/PROGRAMS/ds/llmerge.c",
+		"/home/sumit/q1.c",
+		"/home/sumit/PROGRAMS/ds/quick_sort.c",
+		"/home/sumit/PROGRAMS/practice/mergefiles.c",
+		"/home/sumit/Compiler design programs/progs/calci.y",
+		"/media/sumit/3448CD0248CCC438/.doc/New folder/BZ Collection Pack 1 - Capri Cavanni (6 Scenes) =-=christian235=-=/Uploaded By Verified Uploader christian235 at kickass.to.txt",
+		"/home/sumit/Compiler design programs/progs/calci.i",
+		"/media/sumit/54CAA6E0CAA6BD9C/cse/important/bestserver",
+		"/home/sumit/project/AgroAnalytics/C1ID3.py",
+		"/media/sumit/54CAA6E0CAA6BD9C/cse/important/deep web",
+		"/home/sumit/project/AgroAnalytics/README.md",
+		"/home/sumit/googledrive/Books-Programming-master/just for fun",
+		"/media/sumit/78027DBF027D82C4/Downloads/tncps (1).vcf",
+		"/media/sumit/54CAA6E0CAA6BD9C/cse/all story books/books/pg-mkisofs",
+		"/home/sumit/Compiler design programs/Recursive Descent.c",
+		"/home/sumit/Compiler design programs/recursive.c",
+		"/home/sumit/Compiler design programs/slr.c",
+		"/home/sumit/compiler-design/syntax.c",
+		"/home/sumit/Compiler design programs/vowel.l",
+		"/home/sumit/Compiler design programs/caps.l",
+		"/home/sumit/Compiler design programs/token.l",
+		"/home/sumit/Compiler design programs/EXP9.l",
+		"/home/sumit/PROGRAMS/python/Python-programming-exercises/100+ Python challenging programming exercises.txt",
+		"/home/sumit/.cache/.fr-I4YsnQ/first.tcl",
+		"/home/sumit/PROGRAMS/ds/ll.c",
+		"/media/sumit/54CAA6E0CAA6BD9C/cse/important/contacts.vcf",
+		"/home/sumit/Downloads/tncps.vcf",
+		"/home/sumit/PROGRAMS/algo/partition.c",
+		"/home/sumit/Compiler design programs/slr.cpp",
+		"/home/sumit/Compiler design programs/lalr.cpp",
+		"/home/sumit/Compiler design programs/lalr.c",
+		"/home/sumit/Downloads/helloworld/helloworld/settings.py",
+		"/home/sumit/compiler-design/lexical.c",
+		"/home/sumit/ajpsampleprograms/InterfaceDemo.java",
+		"/home/sumit/compiler-design/comment.c",
+		"/home/sumit/Downloads/helloworld/helloworld/urls.py",
+		"/media/sumit/54CAA6E0CAA6BD9C/cse/hacking.txt",
+		"/media/sumit/8EA64756A6473E49/Videos/videos",
+		"/media/sumit/78027DBF027D82C4/Downloads/tncps.vcf",
+		"/media/sumit/54CAA6E0CAA6BD9C/cse/website information/jeans",
+		"/media/sumit/54CAA6E0CAA6BD9C/cse/PROGRAMS/java/subl",
+		"/media/sumit/54CAA6E0CAA6BD9C/cse/PROGRAMS/java/TestThread.java",
+		"/home/sumit/Downloads/0001-add-home-page-and-piechart.patch",
+		"/home/sumit/Downloads/0001-add-view-getTime.patch",
+		"/home/sumit/Downloads/helloworld/restapi/models.py",
+		"/home/sumit/Downloads/helloworld/restapi/apps.py",
+		"/home/sumit/ajpsampleprograms/DataStreamExample.java",
+		"/home/sumit/PROGRAMS/ds/llrev.c",
+		"/home/sumit/PROGRAMS/hash-table/main.c",
+		"/home/sumit/PROGRAMS/hash-table/hashtbl.c",
+		"/home/sumit/PROGRAMS/ds/ll",
+		"/media/sumit/54CAA6E0CAA6BD9C/cse/PROGRAMS/ds/ll.c",
+		"/home/sumit/Desktop/got/Game.of.Thrones.S07E05.720p.WEB.h264-TBS.srt",
+		"/media/sumit/54CAA6E0CAA6BD9C/my fav/Coldplay - A Sky Full Of Stars.srt",
+		"/media/sumit/54CAA6E0CAA6BD9C/my fav/Coldplay - Hymn For The Weekend (Official video) - YouTube.srt",
+		"/media/sumit/54CAA6E0CAA6BD9C/my fav/Imagine Dragons - Demons.ass",
+		"/media/sumit/54CAA6E0CAA6BD9C/my fav/The Script - Hall of Fame ft. will.i.amOR.srt",
+		"/home/sumit/Desktop/got/Game.of.Thrones.S07E05.Eastwatch.720p.AMZN.WEB-DL.DDP5.1.H.264-GoT.srt",
+		"/home/sumit/Desktop/got/Game.of.Thrones.S07E05.Eastwatch.720p.AMZN.WEB-DL.DDP5.H.264-GoT.srt",
+		"/media/sumit/54CAA6E0CAA6BD9C/cse/important/ADDRESS",
+		"/home/sumit/Downloads/helloworld/restapi/tests.py",
+		"/home/sumit/Downloads/helloworld/restapi/views.py",
+		"/home/sumit/Downloads/helloworld/manage.py",
+		"/media/sumit/78027DBF027D82C4/Downloads/Game.of.Thrones.S05E04.HDTV.x264-ASAP.srt",
+		"/media/sumit/54CAA6E0CAA6BD9C/cse/imp",
+		"/home/sumit/Downloads/helloworld/db.sqlite3",
+		"/home/sumit/Downloads/helloworld/0001-add-home-page-and-piechart.patch",
+		"/home/sumit/Downloads/helloworld/restapi/testclass.py",
+		"/home/sumit/Downloads/helloworld/restapi/admin.py",
+		"/home/sumit/Downloads/helloworld/helloworld/wsgi.py",
+		"/home/sumit/Downloads/helloworld/djangodev/bin/pip3",
+		"/home/sumit/Downloads/helloworld/djangodev/bin/pip3.5",
+		"/home/sumit/Downloads/helloworld/djangodev/bin/python",
+		"/home/sumit/CopyFile.java",
+		"/home/sumit/Downloads/helloworld/helloworld/__init__.py",
+		"/home/sumit/input.txt",
+		"/home/sumit/file.java",
+		"/home/sumit/dile.java"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"pd",
+			"np",
+			"yavatmal",
+			"nashik",
+			"solapur",
+			"amravati",
+			"aurangabad",
+			"pune",
+			"nagpur",
+			"pandas",
+			"temp",
+			"NODE",
+			"coni",
+			"check",
+			"void prin",
+			"print",
+			"next",
+			"E:\\\\1.txt",
+			"mall",
+			"kill"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"tiruvarur",
+			"tiruvallur",
+			"thanjavur",
+			"sivaganga",
+			"ramanathapuram",
+			"pudukkottai",
+			"nagapattinam",
+			"struct node",
+			"link",
+			"/home/sumit/new.txt"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "manage.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 204.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
