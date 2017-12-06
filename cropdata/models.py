@@ -17,6 +17,48 @@ class Cropdata(models.Model):
         managed = False
         db_table = 'cropdata'
 
+class Pressure(models.Model):
+    district = models.CharField(db_column='District', max_length=25)  # Field name made lowercase.
+    year = models.IntegerField(db_column='Year')  # Field name made lowercase.
+    january = models.IntegerField(db_column='January')  # Field name made lowercase.
+    february = models.IntegerField(db_column='February')  # Field name made lowercase.
+    march = models.IntegerField(db_column='March')  # Field name made lowercase.
+    april = models.IntegerField(db_column='April')  # Field name made lowercase.
+    may = models.IntegerField(db_column='May')  # Field name made lowercase.
+    june = models.IntegerField(db_column='June')  # Field name made lowercase.
+    july = models.IntegerField(db_column='July')  # Field name made lowercase.
+    august = models.IntegerField(db_column='August')  # Field name made lowercase.
+    september = models.IntegerField(db_column='September')  # Field name made lowercase.
+    october = models.IntegerField(db_column='October')  # Field name made lowercase.
+    november = models.IntegerField(db_column='November')  # Field name made lowercase.
+    december = models.IntegerField(db_column='December')  # Field name made lowercase.
+    id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'pressure'
+
+
+class Temperature(models.Model):
+    district = models.CharField(db_column='District', max_length=25)  # Field name made lowercase.
+    year = models.IntegerField(db_column='Year')  # Field name made lowercase.
+    january = models.IntegerField(db_column='January')  # Field name made lowercase.
+    february = models.IntegerField(db_column='February')  # Field name made lowercase.
+    march = models.IntegerField(db_column='March')  # Field name made lowercase.
+    april = models.IntegerField(db_column='April')  # Field name made lowercase.
+    may = models.IntegerField(db_column='May')  # Field name made lowercase.
+    june = models.IntegerField(db_column='June')  # Field name made lowercase.
+    july = models.IntegerField(db_column='July')  # Field name made lowercase.
+    august = models.IntegerField(db_column='August')  # Field name made lowercase.
+    september = models.IntegerField(db_column='September')  # Field name made lowercase.
+    october = models.IntegerField(db_column='October')  # Field name made lowercase.
+    november = models.IntegerField(db_column='November')  # Field name made lowercase.
+    december = models.IntegerField(db_column='December')  # Field name made lowercase.
+    id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'temperature'
 
 
 

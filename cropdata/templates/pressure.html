@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Pressure details of various districts of Tamilnadu state</h2>
+  <p>Pressure Details</p>            
+  <table border="1" class="table table-condensed">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>District</th>
+        <th>Year</th>
+        <th>January</th>
+        <th>February</th>
+        <th>March</th>
+        <th>April</th>
+        <th>May</th>
+        <th>June</th>
+        <th>July</th>
+        <th>August</th>
+        <th>September</th>
+        <th>October</th>
+        <th>November</th>
+        <th>December</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for row in press_data %}
+      <tr>
+      <td>{{row.id}}</td> <td>{{row.district}}</td> <td>{{row.year}}</td> <td>{{row.january}}</td> <td>{{row.february}}</td> <td>{{row.march}}</td> <td>{{row.april}}</td> <td>{{row.may}}</td> <td>{{row.june}}</td> <td>{{row.july}}</td> <td>{{row.august}}</td> <td>{{row.september}}</td><td>{{row.october}}</td> <td>{{row.november}}</td> <td>{{row.december}}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

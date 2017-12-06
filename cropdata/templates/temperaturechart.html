@@ -1,0 +1,57 @@
+{% load staticfiles %}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Temperature Data</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+ 
+<div class="container">
+  <h2>Temperature Visual Charts</h2>
+  <p></p>
+  <div class="panel-group">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+    District
+    <select name="month" id="dis1">
+
+	</select>
+	Year
+	<select name="year" id="year1"> <!-- onchange="chart1()"> -->
+
+	</select>
+      	<button type="button" onclick="chart1()">Submit</button>
+      </div>
+      <div class="panel-body"> 
+      	<div id="container1" style="max-width: 1100px; max-height: 800px; margin: 0 auto"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
+
+
+{% block script %}
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{% static "temperaturechart.js" %}" type="text/javascript"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+{% endblock script %}
