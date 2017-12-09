@@ -1,0 +1,11 @@
+Requirement already satisfied: xhtml2pdf in /usr/local/lib/python3.5/site-packages
+Requirement already satisfied: html5lib==1.0b10 in /usr/local/lib/python3.5/site-packages (from xhtml2pdf)
+Requirement already satisfied: httplib2 in /usr/local/lib/python3.5/site-packages (from xhtml2pdf)
+Requirement already satisfied: pyPdf2 in /usr/local/lib/python3.5/site-packages (from xhtml2pdf)
+Requirement already satisfied: Pillow in /usr/local/lib/python3.5/site-packages (from xhtml2pdf)
+Requirement already satisfied: reportlab>=3.0 in /usr/local/lib/python3.5/site-packages (from xhtml2pdf)
+Requirement already satisfied: six in /usr/local/lib/python3.5/site-packages (from xhtml2pdf)
+Requirement already satisfied: webencodings in /usr/local/lib/python3.5/site-packages (from html5lib==1.0b10->xhtml2pdf)
+Requirement already satisfied: setuptools>=18.5 in /usr/local/lib/python3.5/site-packages (from html5lib==1.0b10->xhtml2pdf)
+Requirement already satisfied: olefile in /usr/local/lib/python3.5/site-packages (from Pillow->xhtml2pdf)
+Requirement already satisfied: pip>=1.4.1 in /usr/local/lib/python3.5/site-packages (from reportlab>=3.0->xhtml2pdf)

@@ -9,34 +9,56 @@
   <title>Temperature Data</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
- 
-<div class="container">
-  <h2>Temperature Visual Charts</h2>
-  <p></p>
-  <div class="panel-group">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-    District
-    <select name="month" id="dis1">
 
-	</select>
-	Year
-	<select name="year" id="year1"> <!-- onchange="chart1()"> -->
+<div> 
+  <div class="container">
+    <h2>Temperature Visual Line Chart</h2>
+    <p></p>
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+      District
+      <select name="month" id="dis1">
 
-	</select>
-      	<button type="button" onclick="chart1()">Submit</button>
-      </div>
-      <div class="panel-body"> 
-      	<div id="container1" style="max-width: 1100px; max-height: 800px; margin: 0 auto"></div>
+  	  </select>
+    	Year
+    	<select name="year" id="year1"> <!-- onchange="chart1()"> -->
+
+    	</select>
+        	<button type="button" onclick="chart1()">Submit</button>
+        </div>
+        <div class="panel-body"> 
+        	<div id="container1" style="max-width: 1100px; max-height: 800px; margin: 0 auto"></div>
+        </div>
       </div>
     </div>
 
+  <div class="container"> 
+    <h2> Temperature visual Bar chart</h2> 
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          District
+          <select name="month" id="dis2">
+
+          </select>
+          Year
+          <select name="year" id="year2"> <!-- onchange="chart1()"> -->
+
+          </select>
+              <button type="button" onclick="chart2()">Submit</button>
+        </div>
+        <div class="panel-body"> 
+          <div id="container2"><!-- Plotly chart will be drawn inside this DIV --></div>
+          <!-- <div id="container2" style="max-width: 1100px; max-height: 800px; margin: 0 auto"></div> -->
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
 </body>
 </html>
 
@@ -53,5 +75,8 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
 
 {% endblock script %}

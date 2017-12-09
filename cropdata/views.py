@@ -6,25 +6,38 @@ from rest_framework.views import APIView
 from cropdata.models import *
 from cropdata.fusioncharts import FusionCharts
 from collections import OrderedDict
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 class cropdataDetail(APIView):
 
     def get(self, request):
+        page = request.GET.get('page', 1)
         final = []
         res = Cropdata.objects.all()
-        for item in res:
-            data = {}
-            data['id'] = item.id
-            data['state'] = item.state
-            data['district'] = item.district
-            data['year'] = item.year
-            data['season'] = item.season
-            data['crop'] = item.crop
-            data['production'] = item.production
-            data['productivity'] = item.productivity
-            final.append(data)
+
+        
+        paginator = Paginator(res, 500)
+        try:
+            res1 = paginator.page(page)
+        except PageNotAnInteger:
+            res1 = paginator.page(1)
+        except EmptyPage:
+            res1 = paginator.page(paginator.num_pages)
+
+
+        # for item in res1:
+        #     data = {}
+        #     data['id'] = item.id
+        #     data['state'] = item.state
+        #     data['district'] = item.district
+        #     data['year'] = item.year
+        #     data['season'] = item.season
+        #     data['crop'] = item.crop
+        #     data['production'] = item.production
+        #     data['productivity'] = item.productivity
+        #     final.append(data)
         # return Response(final, status=status.HTTP_200_OK)
-        return render(request, 'cropdetail.html', {'crop_data':final, 'text':"This is Crop production details of Tamilnadu state from year 1997 to 2016"})
+        return render(request, 'cropdetail.html', {'crop_data':res1, 'text':"This is Crop production details of Tamilnadu state from year 1997 to 2016"})
 
 class temperatureDetail(APIView):
 
@@ -178,4 +191,7 @@ class tempdataPassing(APIView):
 
         return Response({'tdata':data}, status=status.HTTP_200_OK)
 
+class Home(APIView):
 
+    def get(self, request):
+        return render(request,'home.html')

@@ -33,11 +33,13 @@ urlpatterns = [
     url(r'^cropdatadetail/$', cropdata.views.cropdataDetail.as_view(), name='crop production details page'),
     url(r'^tamilnadu/district/temperaturedetail/$', cropdata.views.temperatureDetail.as_view(), name='temperature details page'),
     url(r'^tamilnadu/district/pressuredetail/$', c.pressureDetail.as_view(), name='pressure details page'),
-    url(r'^simplechart/$', restapi.views.Chart.as_view(), name='Simple chart'),
+    #url(r'^simplechart/$', restapi.views.Chart.as_view(), name='Simple chart'),
     url(r'^pressurechart/$', cropdata.views.pressureChart.as_view(), name='Pressure Chart'),
     url(r'^pressurechartapi/$', cropdata.views.pressureChartApi.as_view(), name='Pressure Chart Api'),
     url(r'^pressdatapassing/$', cropdata.views.pressdataPassing.as_view(), name= 'pressure data passing api' ),
     url(r'^temperaturechartapi/$', cropdata.views.temperatureChartApi.as_view(), name='Temperature Chart Api'),
     url(r'^temperaturechart/$', cropdata.views.temperatureChart.as_view(), name='Temperature Chart'),
     url(r'^tempdatapassing/$', cropdata.views.tempdataPassing.as_view(), name= 'temperature data passing api' ),
+    url(r'^home/$', cropdata.views.Home.as_view(), name= 'Home page Api' ),
+    # url(r'^invoice/$', restapi.views.InvoicePDFView.as_view(), name='invoice')
 ]

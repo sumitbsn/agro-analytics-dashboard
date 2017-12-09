@@ -10,10 +10,23 @@
 </head>
 <body>
 
+
+
 <div class="container">
-  <h2>{{text}}</h2>
-  <p>CROP DETAIL</p>            
-  <table class="table table-condensed">
+<h2>{{text}}</h2>
+
+
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          
+  <p>CROP DETAIL</p> 
+        </div>
+
+
+<div class="panel-body"> 
+  <div style="height: 500px; overflow-y: scroll;">     
+  <table class="table table-condensed" >
     <thead>
       <tr>
         <th>ID</th>
@@ -34,6 +47,41 @@
     {% endfor %}
     </tbody>
   </table>
+  </div>
+
+
+
+{% if crop_data.has_other_pages %}
+  <ul class="pagination">
+    {% if crop_data.has_previous %}
+      <li><a href="?page={{ crop_data.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in crop_data.paginator.page_range %}
+      {% if crop_data.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if crop_data.has_next %}
+      <li><a href="?page={{ crop_data.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+
 </div>
 
 </body>

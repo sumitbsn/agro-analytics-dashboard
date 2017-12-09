@@ -9,6 +9,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from restapi.models import *
 from django.db.models import Q
+from easy_pdf.views import PDFTemplateView
+from easy_pdf import *
 
 # Create your views here.
 def registration(request):
@@ -107,3 +109,12 @@ class cropData(APIView):
             final.append(data)
         # return Response(final, status=status.HTTP_200_OK)
         return render(request, 'cropdetail.html', {'crop_data':final, 'text':"This is Crop production details of Tamilnadu state from year 1997 to 2016"})
+
+class InvoicePDFView(PDFTemplateView):
+    template_name = "userdetail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        myinstance = get_object_or_404(MyModel, pk=context['pk'])
+        context['myinstance'] = myinstance
+        return context
