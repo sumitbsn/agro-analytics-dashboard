@@ -7,6 +7,7 @@ from cropdata.models import *
 from cropdata.fusioncharts import FusionCharts
 from collections import OrderedDict
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.models import User
 
 class cropdataDetail(APIView):
 
@@ -195,3 +196,41 @@ class Home(APIView):
 
     def get(self, request):
         return render(request,'home.html')
+
+class Signup(APIView):
+
+    def get(self, request):
+        return render(request,'signup.html')
+
+class Login(APIView):
+
+    def get(self, request):
+        return render(request,'login.html')
+
+class submitSignupdetail(APIView):
+    def post(self,request):
+        Username = request.POST['username']
+        Email = request.POST['email']
+        Password = request.POST['password']
+
+        print (Username)
+        user = User.objects.create_user(username=Username, email=Email, password=Password)
+
+        # q = Info(first_name=first_name, last_name=last_name, age=age, address=address, salary=salary)
+        # q.save()
+        #return Response({'username':name, 'password':age}, status=status.HTTP_200_OK) 
+        # return Response("Success!!", status=status.HTTP_200_OK)
+        return HttpResponseRedirect("/login/")
+
+class submitLogindetail(APIView):
+    def post(self,request):
+        username = request.POST.get('uname', '')
+        password = request.POST.get('psw', '')
+        user = User.authenticate(username = username, password = password)      
+
+        if user is not None:
+            User.login(request, user)
+            return HttpResponseRedirect(reverse('home'))
+        else:
+            # return HttpResponseRedirect('/accounts/invalid')
+            return Response("Not Success!!", status=status.HTTP_200_OK)

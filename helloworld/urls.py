@@ -41,5 +41,10 @@ urlpatterns = [
     url(r'^temperaturechart/$', cropdata.views.temperatureChart.as_view(), name='Temperature Chart'),
     url(r'^tempdatapassing/$', cropdata.views.tempdataPassing.as_view(), name= 'temperature data passing api' ),
     url(r'^home/$', cropdata.views.Home.as_view(), name= 'Home page Api' ),
-    # url(r'^invoice/$', restapi.views.InvoicePDFView.as_view(), name='invoice')
+    # url(r'^invoice/$', restapi.views.InvoicePDFView.as_view(), name='invoice'),
+    url(r'^signup/$', cropdata.views.Signup.as_view(), name= 'Signup page Api' ),
+    url(r'^login/$', cropdata.views.Login.as_view(), name= 'Login page Api' ),
+    url(r'^submitsignupdetail/$', cropdata.views.submitSignupdetail.as_view(), name= 'Submit user signup details Api' ),
+    url(r'^submitlogindetail/$', cropdata.views.submitLogindetail.as_view(), name= 'Submit user login details Api' ),
+
 ]
