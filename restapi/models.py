@@ -32,3 +32,12 @@ class Cropdata(models.Model):
         managed = False
         db_table = 'cropdata'
 
+class Img(models.Model):
+    id = models.IntegerField(primary_key=True)
+    path = models.CharField(max_length=256, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'img'
+
+

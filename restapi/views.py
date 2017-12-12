@@ -118,3 +118,9 @@ class cropData(APIView):
 #         myinstance = get_object_or_404(MyModel, pk=context['pk'])
 #         context['myinstance'] = myinstance
 #         return context
+class imageStore(APIView):
+    def get(self, request):
+        res = Img.objects.filter(id = '1')
+        # res1 = Img.objects.values_list('path', flat=True).distinct()
+        print (res)
+        return render(request, 'image.html', {'path': res}) 

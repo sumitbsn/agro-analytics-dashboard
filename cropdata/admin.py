@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import Pressure, Cropdata
-from restapi.models import Info
+from restapi.models import Info, Img
 
 #myModels = [models.Project, models.Client, models.About]  # iterable list
 #admin.site.register(myModels)
@@ -10,3 +10,4 @@ from restapi.models import Info
 admin.site.register(Pressure)
 admin.site.register(Cropdata)
 admin.site.register(Info)
+admin.site.register(Img)

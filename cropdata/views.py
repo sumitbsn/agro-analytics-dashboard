@@ -8,6 +8,9 @@ from cropdata.fusioncharts import FusionCharts
 from collections import OrderedDict
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 class cropdataDetail(APIView):
 
@@ -141,7 +144,6 @@ class pressdataPassing(APIView):
 
         return Response({'pdata':data}, status=status.HTTP_200_OK)
 
-
 class temperatureChartApi(APIView):
 
     def get(self, request):
@@ -224,13 +226,28 @@ class submitSignupdetail(APIView):
 
 class submitLogindetail(APIView):
     def post(self,request):
-        username = request.POST.get('uname', '')
-        password = request.POST.get('psw', '')
-        user = User.authenticate(username = username, password = password)      
 
-        if user is not None:
-            User.login(request, user)
-            return HttpResponseRedirect(reverse('home'))
-        else:
-            # return HttpResponseRedirect('/accounts/invalid')
-            return Response("Not Success!!", status=status.HTTP_200_OK)
+        try:
+            username = request.POST.get('uname', '')
+            password = request.POST.get('psw', '')
+
+            print (username)
+            print (password)
+            user = authenticate(request, username = username, password = password)      
+
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect("/home/")
+            else:
+                return HttpResponseRedirect("/login/")
+                # return HttpResponseRedirect('/accounts/invalid')
+                #return Response("Not Success!!", status=status.HTTP_200_OK)
+                #return Response("Success!!", status=status.HTTP_200_OK)
+        except Exception as e:
+            print (e)
+
+
+def logoutUser(request):
+    logout(request)
+    # return Response(status=status.HTTP_200_OK)
+    return HttpResponseRedirect("/login/")
