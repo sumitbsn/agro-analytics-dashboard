@@ -4,13 +4,13 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from cropdata.models import *
-from cropdata.fusioncharts import FusionCharts
 from collections import OrderedDict
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from django.template import RequestContext
 
 class cropdataDetail(APIView):
 
@@ -215,11 +215,9 @@ class submitSignupdetail(APIView):
         Email = request.POST['email']
         Password = request.POST['password']
 
-        print (Username)
+        # print (Username)
         user = User.objects.create_user(username=Username, email=Email, password=Password)
-
-        # q = Info(first_name=first_name, last_name=last_name, age=age, address=address, salary=salary)
-        # q.save()
+        
         #return Response({'username':name, 'password':age}, status=status.HTTP_200_OK) 
         # return Response("Success!!", status=status.HTTP_200_OK)
         return HttpResponseRedirect("/login/")
@@ -251,3 +249,10 @@ def logoutUser(request):
     logout(request)
     # return Response(status=status.HTTP_200_OK)
     return HttpResponseRedirect("/login/")
+
+
+
+def handler404(request):
+    response = render_to_response('404.html', {}, context_instance=RequestContext(request))
+    response.status_code = 404
+    return response

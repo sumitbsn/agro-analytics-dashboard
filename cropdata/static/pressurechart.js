@@ -1,5 +1,3 @@
-
-
 var updateDropDown1 = function(){
     $.getJSON('/pressdatapassing/', function (data_response) {
         var dropdownval = data_response.pdata;
@@ -101,7 +99,7 @@ var chart2 = function(){
     var f = document.getElementById("year2");
     var yr = f.options[f.selectedIndex].value;
     // console.log(e);
-    console.log(dis+yr);
+    // console.log(dis+yr);
 
     $.getJSON('/pressurechartapi/?year='+yr+'&dis='+dis, function (data_response) {
         var press_val = data_response.alldata;
@@ -113,7 +111,7 @@ var chart2 = function(){
         for (i = 0; i < len; i++){
             data_list.push({'name':press_val.year[i], 'data':press_val.value[i]})
         }
-        console.log(data_list);
+        // console.log(data_list);
         Highcharts.chart('container4', {
             chart: {
                 type: 'column'
@@ -149,7 +147,7 @@ var chart2 = function(){
             },
             series: data_list
         });
-        console.log(data_list);
+        // console.log(data_list);
     });
 
 };

@@ -1,33 +1,92 @@
+{% extends "base.html" %}
+
 <!DOCTYPE html>
 <html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Signup Form</title>
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
+<!-- <head> -->
+{% block headc %}
+  <!-- <meta charset="UTF-8"> -->
+  <title>Sign Up Form</title>  
   
 
+  <style>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-</head>
+  html { width: 100%; height:100%; overflow:hidden; }
 
-<body>
-  <div w3-include-html="base.html"></div>
-  <div class="register">
-    <h1>Sign Up</h1>
+
+  .register { 
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      margin: -120px 0 0 -260px;
+      width:1500px;
+      height:400px;
+  }
+  .register h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
+
+  input { 
+      width: 100%; 
+      margin-bottom: 10px; 
+      /*background: rgba(0,0,0,0.3);*/
+      border: none;
+      outline: none;
+      padding: 10px;
+      font-size: 13px;
+      color: #000000;
+      /*text-shadow: 1px 1px 1px rgba(0,0,0,0.3);*/
+      border: 1px solid rgba(0,0,0,0.3);
+      border-radius: 4px;
+  }
+
+  .form-register {
+      padding: 50px;
+      background-color: #221F1F;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      padding-left: 15px;
+      padding-right: 15px;
+      border-radius: 15px;
+      border-color: #d2d2d2;
+      border-width: 5px;
+      box-shadow:0 1px 0 #cfcfcf;
+  }
+
+  .btn{
+      padding-left: 50px;
+      padding-right: 50px;
+  }
+
+  .register-title{
+    color: #fff;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  /*input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }*/
+  </style>
+
+
+{% endblock headc %} 
+
+<!-- </head> -->
+
+{% block content %}
+
+<div class="register">
+<div class="col-md-offset-5 col-md-3">
+  <div class="form-register">
+    <h1 class="register-title">Sign Up</h1>
     <form method="post" action="/submitsignupdetail/">
         <input type="text" name="username" placeholder="Username" required="required" />
         <input type="text" name="email" placeholder="Email" required="required" />
         <input type="password" name="password" placeholder="Password" required="required" />
         <button type="submit" class="btn btn-primary btn-block btn-large">Register</button>
     </form>
+  </div>
+</div>  
 </div>
   
 
-</body>
+{% endblock content %}
+
+
 </html>

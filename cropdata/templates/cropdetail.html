@@ -1,27 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "base.html" %}
+
+
+
+<!-- <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
+</head> -->
 
+
+
+{% block content %}
 
 
 <div class="container">
-<h2>{{text}}</h2>
+<h2>Crop production details of Tamilnadu state from year 1997 to 2016</h2>
 
 
-    <div class="panel-group">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          
-  <p>CROP DETAIL</p> 
-        </div>
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading" style="background: #221F1F; color: #FFFFFF">
+      
+      <p>CROP DETAIL</p> 
+    </div>
 
 
 <div class="panel-body"> 
@@ -51,38 +52,31 @@
 
 
 
-{% if crop_data.has_other_pages %}
-  <ul class="pagination">
-    {% if crop_data.has_previous %}
-      <li><a href="?page={{ crop_data.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
-    {% endif %}
-    {% for i in crop_data.paginator.page_range %}
-      {% if crop_data.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+  {% if crop_data.has_other_pages %}
+    <ul class="pagination">
+      {% if crop_data.has_previous %}
+        <li><a href="?page={{ crop_data.previous_page_number }}">&laquo;</a></li>
       {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
+        <li class="disabled"><span>&laquo;</span></li>
       {% endif %}
-    {% endfor %}
-    {% if crop_data.has_next %}
-      <li><a href="?page={{ crop_data.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
-    {% endif %}
-  </ul>
-{% endif %}
-
-
-
+      {% for i in crop_data.paginator.page_range %}
+        {% if crop_data.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if crop_data.has_next %}
+        <li><a href="?page={{ crop_data.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
 
       </div>
     </div>
   </div>
-
-
-
 </div>
 
-</body>
-</html>
+{% endblock content %}

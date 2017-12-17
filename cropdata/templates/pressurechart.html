@@ -1,32 +1,103 @@
+{% extends "base.html" %}
 {% load staticfiles %}
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Pressure Data</title>
+<!-- <head> -->
+{% block headc %}
+
+  <title>Home Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
-<body>
+  <script src="{% static "highcharts.js" %}" type="text/javascript"></script>
+  <script src="{% static "pressurechart.js" %}" type="text/javascript"></script>
 
+  <style type="text/css">
+    
+  p {
+      font-family: sans-serif;
+  }
+
+  label.custom-select-title{
+    color: #white;
+  }
+
+  label.custom-select {
+      position: relative;
+      display: inline-block;
+  }
+
+      .custom-select select {
+          display: inline-block;
+          border: 2px solid #bbb;
+          padding: 4px 3px 3px 5px;
+          margin: 0;
+          font: inherit;
+          outline:none; /* remove focus ring from Webkit */
+          line-height: 1.2;
+          background: #FFFFFF;
+          
+          -webkit-appearance:none; /* remove the strong OSX influence from Webkit */
+          
+          -webkit-border-radius: 6px;
+          -moz-border-radius: 6px;
+          border-radius: 6px;
+      }
+
+      /* for Webkit's CSS-only solution */
+      @media screen and (-webkit-min-device-pixel-ratio:0) { 
+          .custom-select select {
+              padding-right:30px;    
+          }
+      }  
+      
+      /* Select arrow styling */
+      .custom-select:after {
+          content: "▼";
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          font-size: 60%;
+          line-height: 30px;
+          padding: 0 7px;
+          background: #bbb;
+          color: white;
+          
+          pointer-events:none;
+          
+          -webkit-border-radius: 0 6px 6px 0;
+          -moz-border-radius: 0 6px 6px 0;
+          border-radius: 0 6px 6px 0;
+      }
+      
+      .no-pointer-events .custom-select:after {
+          content: none;
+      }
+
+  </style>
+{% endblock headc %}
+
+
+<!-- </head> -->
+<!-- <body> -->
+
+{% block content %}
   <div class="container">
     <h2>Pressure Visual Line Chart</h2>
     <p></p>
     <div class="panel-group">
       <div class="panel panel-default">
-        <div class="panel-heading">
-      District
-      <select name="month" id="dis1">
+        <div class="panel-heading" style="background: #221F1F">
+          <span style="color: #fff">District</span>
+          <label class="custom-select">
+          <select name="month" id="dis1"> </select>
+          </label>
 
-      </select>
-      Year
-      <select name="year" id="year1"> <!-- onchange="chart1()"> -->
-
-      </select>
+          <span style="color: #fff">Year</span>
+          <label class="custom-select">
+          <select name="year" id="year1"> <!-- onchange="chart1()"> --></select>
+          </label>
           <button type="button" onclick="chart1()">Submit</button>
         </div>
         <div class="panel-body"> 
@@ -34,48 +105,30 @@
         </div>
       </div>
     </div>
-
+  </div>
   <div class="container"> 
     <h2> Pressure visual Bar chart</h2> 
     <div class="panel-group">
       <div class="panel panel-default">
-        <div class="panel-heading">
-          District
-          <select name="month" id="dis2">
-
-          </select>
-          Year
-          <select name="year" id="year2"> <!-- onchange="chart1()"> -->
-
-          </select>
-              <button type="button" onclick="chart2()">Submit</button>
+        <div class="panel-heading" style="background: #221F1F">
+          <span style="color: #fff">District</span>
+          <label class="custom-select">
+          <select name="month" id="dis2"></select>
+          </label>
+          
+          <span style="color: #fff">Year</span>
+          <label class="custom-select">
+          <select name="year" id="year2"> <!-- onchange="chart1()"> --></select>
+          </label>
+          <button type="button" onclick="chart2()">Submit</button>
         </div>
         <div class="panel-body"> 
           <div id="container4"><!-- Plotly chart will be drawn inside this DIV --></div>
-          <!-- <div id="container2" style="max-width: 1100px; max-height: 800px; margin: 0 auto"></div> -->
+          <div id="container2" style="max-width: 1100px; max-height: 800px; margin: 0 auto"></div>
         </div>
       </div>
     </div>
   </div>
-
-</body>
+{% endblock content %}
+<!-- </body> -->
 </html>
-
-
-{% block script %}
-
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="{% static "pressurechart.js" %}" type="text/javascript"></script>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-
-
-{% endblock script %}
