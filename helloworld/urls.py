@@ -19,10 +19,9 @@ import restapi.views
 from restapi import views as v
 from cropdata import views as c
 import cropdata.views
-# handler400 = 'my_app.views.bad_request'
-# handler403 = 'my_app.views.permission_denied'
-# handler404 = 'my_app.views.page_not_found'
-# handler500 = 'my_app.views.server_error'
+
+# handler404 = 'app.views.404_view'
+
 urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
