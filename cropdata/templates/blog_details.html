@@ -1,0 +1,76 @@
+{% extends "base.html"%}
+{% load staticfiles %}
+{% block title %} Detection Verification System {% endblock title %}
+
+{% block head %}
+<!-- <link href="{% static 'das/css/stats.css' %}" rel="stylesheet">
+<link href="{% static 'das/css/indexStyle.css' %}" rel="stylesheet">
+<script src="{% static 'das/js/constants.js' %}"></script> -->
+{% endblock head %}
+
+{% block content %}
+
+
+
+<div class="container">
+	<div class="row" style="margin-left: 25px;margin-top: 25px;margin-right: 25px;">
+		<div class="col-sm-9">
+			<div >
+				<div class="well well-lg" style="background-color:#f4f8f9;border-color:#f4f8f9;">
+					<h3 style="color:#f441f1;">{{ blog.title }} </h3>
+					<h4><small style="color:#42d1f4;"> {{ blog.entry_time }} by <b> {{ blog.user }} </b></small></h4></br>
+					<p>
+					<!-- class="lead" -->
+						
+							<p  class="mb-0-sm">
+							{{ blog.body }}
+							</p>
+						
+					</p>
+				</div>
+			   
+
+				{% block pagination %}
+				  {% if is_paginated %}
+					  <div class="pagination">
+						  <span class="page-links">
+							  {% if page_obj.has_previous %}
+								  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+							  {% endif %}
+							  <span class="page-current">
+								  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+							  </span>
+							  {% if page_obj.has_next %}
+								  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+							  {% endif %}
+						  </span>
+					  </div>
+				  {% endif %}
+				{% endblock %}
+			</div>
+		</div>
+
+		<div class="col-sm-3">
+			<div class="well well-sm" style="background-color:#f4f8f9;border-color:#000;">
+
+				<h3>Recent Blog Entry:</h3>
+				 <ul class="list-group">
+		
+					{% for blog in recentPost %}
+						<!-- <a href="javascript:window.location.reload(true)">{{ blog.title }}</a> -->
+						<li class="list-group-item"><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock content %}
+{% block script %}
+    <!--Include angular core javascript-->
+    <!-- <script src="{% static 'das/js/angular.min.js' %}"></script> -->
+{% endblock script %}
+

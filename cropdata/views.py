@@ -11,6 +11,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import logout
 from django.shortcuts import redirect
 from django.template import RequestContext
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+from django.conf import settings
+import os
+
 
 class cropdataDetail(APIView):
 
@@ -66,7 +71,7 @@ class temperatureDetail(APIView):
             data['november'] = item.november
             data['december'] = item.december
             final.append(data)
-        print (final[10]['october'])
+        # print (final[10]['october'])
         # return Response(final, status=status.HTTP_200_OK)
         return render(request, 'temperature.html', {'temp_data':final})
 
@@ -207,7 +212,8 @@ class Signup(APIView):
 class Login(APIView):
 
     def get(self, request):
-        return render(request,'login.html')
+        status = request.GET.get('status', '')
+        return render(request,'login.html', {'status': status})
 
 class submitSignupdetail(APIView):
     def post(self,request):
@@ -220,7 +226,7 @@ class submitSignupdetail(APIView):
         
         #return Response({'username':name, 'password':age}, status=status.HTTP_200_OK) 
         # return Response("Success!!", status=status.HTTP_200_OK)
-        return HttpResponseRedirect("/login/")
+        return HttpResponseRedirect("/login/?status=Success")
 
 class submitLogindetail(APIView):
     def post(self,request):
@@ -229,8 +235,9 @@ class submitLogindetail(APIView):
             username = request.POST.get('uname', '')
             password = request.POST.get('psw', '')
 
-            print (username)
-            print (password)
+            # print (username)
+            # print (password)
+            
             user = authenticate(request, username = username, password = password)      
 
             if user is not None:
@@ -238,9 +245,7 @@ class submitLogindetail(APIView):
                 return HttpResponseRedirect("/home/")
             else:
                 return HttpResponseRedirect("/login/")
-                # return HttpResponseRedirect('/accounts/invalid')
-                #return Response("Not Success!!", status=status.HTTP_200_OK)
-                #return Response("Success!!", status=status.HTTP_200_OK)
+                
         except Exception as e:
             print (e)
 
@@ -250,7 +255,26 @@ def logoutUser(request):
     # return Response(status=status.HTTP_200_OK)
     return HttpResponseRedirect("/login/")
 
+class BlogDetailView(DetailView):
+    model = Blog
+    template_name = os.path.join(settings.BASE_DIR, 'cropdata/templates/blog_details.html')
+    paginate_by = getattr(settings, "BLOG_PAGINATION_COUNT", 10)
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(BlogDetailView, self).get_context_data(**kwargs)
+        context['recentPost'] = Blog.objects.order_by('entry_time')[:getattr(settings, "RECENT_POST_COUNT", 5)][::-1]
+        return context
 
+class BlogListView(ListView):
+    model = Blog
+    template_name = os.path.join(settings.BASE_DIR, 'cropdata/templates/blog_list.html')
+    paginate_by = getattr(settings, "BLOG_PAGINATION_COUNT", 10)
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(BlogListView, self).get_context_data(**kwargs)
+        context['recentPost'] = Blog.objects.order_by('entry_time')[:getattr(settings, "RECENT_POST_COUNT", 5)][::-1]
+        return context
 
 def handler404(request):
     response = render_to_response('404.html', {}, context_instance=RequestContext(request))

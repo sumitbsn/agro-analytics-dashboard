@@ -77,4 +77,17 @@ class AuthUser(models.Model):
         managed = False
         db_table = 'auth_user'
 
+class Blog(models.Model):
+    user = models.CharField(max_length=255,  blank=True, null=False)
+    title = models.CharField(max_length=255)
+    body = models.TextField()
+    entry_time = models.DateTimeField(blank=True, null=True)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('blogs', {self.id})
+        #return ('blogs', {'id': self.id})
+
+    def __str__(self):
+        return self.title
 
