@@ -1,0 +1,234 @@
+{% extends "base.html"%}
+{% load staticfiles %}
+{% block title %} Volga-DTI Detail All Stats{% endblock title %}
+
+{% block headc %}
+<base href="/" />
+<script src="{% static 'angular.min.js' %}"></script>
+    <script src="{% static 'cropdata.js' %}"></script>
+
+{% endblock headc %}
+
+{% block content %}
+<div class="container-fluid">
+
+
+    {% verbatim %}
+        <div ng-app="resultViewer">
+            <div ng-controller="resultController">
+                <div class="row"  style="background-color:#FCE8FF;">
+
+
+                    <div class="col-lg-12" style="padding-top:1%;">
+                        <div style="padding:8px;" ng-show="initial.showFilter">
+                            <div class="col-sm-2" style="color:grey;font-weight:bold;margin-top:4;">Set Options</div>
+                            <div style="color:#437795;font-weight:bold;border: 1px solid black;padding:5px;">
+                                Results/page:
+                                <select style="color:black;width:10%;font-weight:normal !important;" ng-change="pagination(true, true)"
+                                        ng-model="initial.curShowPerPage" ng-options="count as count for count in initial.showPerPage">
+                                    <option value="count">{{count}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="background: #221F1F">
+                                <h3 class="panel-title" style="color:#FFFFFF;"><i class="fa fa-bars"></i> Cropdata detail Table
+
+                                <span style="text-align:center;font-size:13px;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Year:
+                                <select style="color:black;width:6%;font-weight:normal !important;font-size:12px;" ng-change="pagination(true, true)"
+                                        ng-model="initial.default_year" ng-options="count as count for count in initial.year_options">                                   
+                                </select>
+                                
+                               </span>
+
+                               <span style="text-align:center;font-size:13px;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; District:
+                                <select style="color:black;width:6%;font-weight:normal !important;font-size:12px;" ng-change="pagination(true, true)"
+                                        ng-model="initial.default_district" ng-options="count as count for count in initial.district_options">                                   
+                                </select>
+                                </span>
+
+
+
+
+                                    <span class="pull-right" style="cursor:pointer;" ng-click="initial.showFilter = !initial.showFilter"><i class="fa fa-filter"></i></span>
+                                </h3>
+                            </div>
+                            <div class="panel-body" style="height:75%;overflow-y:auto;">
+                                <div id="panelData" >
+                                    <div ng-show="dataReady">
+
+                                        <table class="table table-bordered "  >
+
+                                            <thead>
+
+                                                <tr style="color:#337AB7;font-size:16px;cursor:auto;">
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="5%">DB ID</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="10%">State</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="15%">District</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="15%">Year</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="10%">Season</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="15%">Crop</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="15%">Production</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="15%">productivity</th>
+
+                                                </tr>
+                                            </thead> 
+                                            <tbody>
+                                                <tr style="color:#337AB7;font-size:16px;cursor:auto;" ng-repeat="md5Obj in md5List  | filter: query " ng-include="getTemplate(md5Obj)"></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <span style="color:grey;font-size:9px;font-weight:thin;">click on row to open full detail.</span>
+                        </div>
+
+
+                        <script type="text/ng-template" id="display" >
+                        <td style="text-align:left;color:#009688;font-size:13px;" width="5%">{{md5Obj.sample_info.id}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="10%">{{md5Obj.sample_info.state}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="10%">{{md5Obj.sample_info.district}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="10%">{{md5Obj.sample_info.year}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="10%">{{md5Obj.sample_info.season}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="10%">{{md5Obj.sample_info.crop}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="10%">{{md5Obj.sample_info.production}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="10%">{{md5Obj.sample_info.productivity}}</td>
+
+                        </script>
+
+
+                        <nav>
+                            <ul class="pager">
+                                <li><button class="btn btn-primary btn-sm" ng-disabled="!config.has_prev"  ng-click="pagination(false)"><i class="fa fa-angle-double-left"></i> Previous </button>
+                                    <span style="font-size:12px;color:grey;font-weight:bold;">
+                                        {{config.cur_page}} / {{config.total_page}}
+                                    </span>
+                                </li>
+                                <li><button class="btn btn-primary btn-sm" ng-disabled="!config.has_next" ng-click="pagination(true)">Next <i class="fa fa-angle-double-right"></i></button></li>
+                            </ul>
+                        </nav>
+
+                    </div>
+                </div>
+
+                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class=" panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title" style="color:#FFFFFF;">
+                                        <i class="fa fa-list-ol"></i> &nbsp;&nbsp;&nbsp;&nbsp;Full Detail for: {{selectedMd5}}
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    </h3>
+                                </div>
+                                <div style="min-height: 40%;">
+                                    <div ng-show="detailReady">
+                                        <div class="row" style="padding:3%;">
+                                            <div>
+                                                <div>
+                                                    <span style="color:#558B2F;font-weight:bold;font-size:16px;cursor:pointer;" ng-click="sampleInfoShow = !sampleInfoShow">
+                                                        <span style="color:grey !important" ng-show="sampleInfoShow"><i class="fa fa-minus-square"></i></span>
+                                                        <span style="color:grey !important" ng-hide="sampleInfoShow"><i class="fa fa-plus-square"></i></span>
+
+                                                        Sample Info:</span>
+                                                </div>
+                                                <div style="" ng-show="sampleInfoShow">
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">DB_id:</span> <span class="detailA">{{detail.sample_info.id}}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">uploaded_on:</span> <span class="detailA">{{detail.sample_info.uploaded_on | date:"yyyy-MM-dd HH:mm:ss" : '+1100'}}</span>
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">customer_name:</span> <span class="detailA">{{detail.sample_info.customer_name}}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">Malware Type:</span> <span class="detailA {{detail.sample_info.malware_type}}">{{detail.sample_info.malware_type}}</span>
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">country:</span> <span class="detailA">{{detail.sample_info.country}}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">jira_tickets:</span> <span class="detailA">{{detail.sample_info.jira_tickets}}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">event_at :</span> <span class="detailA">{{detail.sample_info.event_at | date:"yyyy-MM-dd HH:mm:ss" : '+1100'}}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">Industry :</span> <span class="detailA">{{detail.sample_info.industry}}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">Manually processed by:</span> <span class="detailA">{{detail.processed_info.processed_by}}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">Hostid:</span> <span class="detailA">{{detail.sample_info.hostid}}</span>
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">Entered At:</span> <span class="detailA">{{detail.sample_info.entry_at  | date:"yyyy-MM-dd HH:mm:ss"}}</span>
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">Family_name_given_by:</span> <span class="detailA">{{detail.sample_info.family_name_processed_by}}</span>
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">matched_at:</span> <span class="detailA" style="font-size:12px !important;">{{detail.sample_info.matched_at | date:"yyyy-MM-dd HH:mm:ss" : '+1100'}}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">reported_at:</span> <span class="detailA" style="font-size:12px !important;">{{detail.sample_info.reported_at | date:"yyyy-MM-dd HH:mm:ss" : '+1100'}}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">OS:</span> <span class="detailA" style="font-size:12px !important;">{{detail.sample_info.os}}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">rule_version:</span> <span class="detailA" style="font-size:12px !important;">{{detail.sample_info.rule_version}}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">engine_version:</span> <span class="detailA" style="font-size:12px !important;">{{detail.sample_info.engine_version}}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">Internal_Detail_id:</span> <span class="detailA" style="font-size:12px !important;">{{detail.sample_info.detail_id}}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">Internal_Summary_id:</span> <span class="detailA" style="font-size:12px !important;">{{detail.sample_info.summary_id}}</span>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <span class="detailQ">Whitelist_version:</span> <span class="detailA">{{detail.sample_info.whitelist_version}}</span>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <span class="detailQ">os_correlation_id:</span> <span class="detailA" style="font-size:12px !important; word-wrap: break-word;">{{detail.sample_info.os_correlation_id}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div ng-hide="detailReady">
+                                        <div class="loading" id="detailLoader">
+                                            <div class="loading-bar"></div>
+                                            <div class="loading-bar"></div>
+                                            <div class="loading-bar"></div>
+                                            <div class="loading-bar"></div>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+
+            </div>
+        </div>
+        <br/><br/>
+    {% endverbatim %}
+</div>
+
+{% endblock content %}
+{% block script %}
+
+
+
+{% endblock script %}
