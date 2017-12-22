@@ -1,0 +1,138 @@
+{% extends "base.html"%}
+{% load staticfiles %}
+{% block title %} Volga-DTI Detail All Stats{% endblock title %}
+
+{% block headc %}
+<base href="/" />
+<script src="{% static 'angular.min.js' %}"></script>
+    <script src="{% static 'pressure_table.js' %}"></script>
+
+{% endblock headc %}
+
+{% block content %}
+<div class="container-fluid">
+
+
+    {% verbatim %}
+        <div ng-app="resultViewer">
+            <div ng-controller="resultController">
+                
+
+
+                    <div class="col-lg-12" style="padding-top:1%;">
+                        <div style="padding:8px;" ng-show="initial.showFilter">
+                            <div class="col-sm-2" style="color:grey;font-weight:bold;margin-top:4;">Set Options</div>
+                            <div style="color:#437795;font-weight:bold;border: 1px solid black;padding:5px;">
+                                Results/page:
+                                <select style="color:black;width:10%;font-weight:normal !important;" ng-change="pagination(true, true)"
+                                        ng-model="initial.curShowPerPage" ng-options="count as count for count in initial.showPerPage">
+                                    <option value="count">{{count}}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style="background: #221F1F">
+                                <h3 class="panel-title" style="color:#FFFFFF;"><i class="fa fa-bars"></i> Pressure detail Table
+
+                                <span style="text-align:center;font-size:13px;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Year:
+                                <select style="color:black;width:6%;font-weight:normal !important;font-size:12px;" ng-change="pagination(true, true)"
+                                        ng-model="initial.default_year" ng-options="count as count for count in initial.year_options">                                   
+                                </select>
+                                
+                               </span>
+
+                               <span style="text-align:center;font-size:13px;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; District:
+                                <select style="color:black;width:6%;font-weight:normal !important;font-size:12px;" ng-change="pagination(true, true)"
+                                        ng-model="initial.default_district" ng-options="count as count for count in initial.district_options">                                   
+                                </select>
+                                </span>
+
+
+                                    <span class="pull-right" style="cursor:pointer;" ng-click="initial.showFilter = !initial.showFilter"><i class="fa fa-filter"></i></span>
+                                </h3>
+                            </div>
+                            <div class="panel-body" style="height:75%;overflow-y:auto;">
+                                <div id="panelData" >
+                                    <div ng-show="dataReady">
+
+                                        <table class="table table-bordered "  >
+
+                                            <thead>
+
+                                                <tr style="color:#337AB7;font-size:16px;cursor:auto;">
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="5%">DB ID</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="7%">District</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="7%">Year</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="7%">January</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="7%">February</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="7%">March</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="7%">April</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="7%">May</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="7%">June</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="7%">July</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="7%">August</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="7%">September</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="7%">October</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="7%">November</th>
+                                                    <th style="text-align:center;font-size:11px;" rowspan="1" width="7%">December</th>
+
+                                                </tr>
+                                            </thead> 
+                                            <tbody>
+                                                <tr style="color:#337AB7;font-size:16px;cursor:auto;" ng-repeat="pressureObj in pressureList  | filter: query " ng-include="getTemplate(pressureObj)"></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <span style="color:grey;font-size:9px;font-weight:thin;">click on row to open full detail.</span> -->
+                        </div>
+
+
+                        <script type="text/ng-template" id="display" >
+                        <td style="text-align:left;color:#009688;font-size:13px;" width="5%">{{pressureObj.sample_info.id}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="7%">{{pressureObj.sample_info.district}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="7%">{{pressureObj.sample_info.year}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="7%">{{pressureObj.sample_info.january}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="7%">{{pressureObj.sample_info.february}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="7%">{{pressureObj.sample_info.march}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="7%">{{pressureObj.sample_info.april}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="7%">{{pressureObj.sample_info.may}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="7%">{{pressureObj.sample_info.june}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="7%">{{pressureObj.sample_info.july}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="7%">{{pressureObj.sample_info.august}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="7%">{{pressureObj.sample_info.september}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="7%">{{pressureObj.sample_info.october}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="7%">{{pressureObj.sample_info.november}}</td>
+                        <td style="text-align:left;color:#424242;font-size:10px;" width="7%">{{pressureObj.sample_info.december}}</td>
+
+                        </script>
+
+
+                        <nav>
+                            <ul class="pager">
+                                <li><button class="btn btn-primary btn-sm" ng-disabled="!config.has_prev"  ng-click="pagination(false)"><i class="fa fa-angle-double-left"></i> Previous </button>
+                                    <span style="font-size:12px;color:grey;font-weight:bold;">
+                                        {{config.cur_page}} / {{config.total_page}}
+                                    </span>
+                                </li>
+                                <li><button class="btn btn-primary btn-sm" ng-disabled="!config.has_next" ng-click="pagination(true)">Next <i class="fa fa-angle-double-right"></i></button></li>
+                            </ul>
+                        </nav>
+
+                    </div>
+                </div>
+
+        
+        </div>
+        <br/><br/>
+    {% endverbatim %}
+</div>
+
+{% endblock content %}
+{% block script %}
+
+
+
+{% endblock script %}
