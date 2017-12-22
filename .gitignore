@@ -1,0 +1,6 @@
+cropdata/*.pyc
+cropdata/migrations/__pycache__/*.pyc
+cropdata/migrations/*.pyc
+helloworld/*.pyc
+restapi/migrations/*.pyc
+restapi/*.pyc
