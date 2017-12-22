@@ -209,6 +209,8 @@ class cropdataApi(APIView):
         page_number       = request.GET.get('page', 1)
         year              = request.GET.get('year', None)        
         district          = request.GET.get('district', None)
+        season            = request.GET.get('season', None)
+        crop              = request.GET.get('crop', None)
         treated_obj_list  = Cropdata.objects.all().values('id', 
                                                         'state',
                                                         'district',
@@ -223,6 +225,11 @@ class cropdataApi(APIView):
             treated_obj_list = treated_obj_list.filter(year=year)
         if district is not None and district != 'ALL':
             treated_obj_list = treated_obj_list.filter(district=district)
+        if season is not None and season != 'ALL':
+            treated_obj_list = treated_obj_list.filter(season=season)
+        if crop is not None and crop != 'ALL':
+            treated_obj_list = treated_obj_list.filter(crop=crop)
+
 
         paginator         = Paginator(treated_obj_list, count_per_page)
         try:
@@ -261,7 +268,8 @@ class cropdataApi(APIView):
 
         ret_dict['district'] = sorted(res1)
         ret_dict['year'] = sorted(res2)
-        # ret_dict[]
+        ret_dict['season'] = sorted(res3)
+        ret_dict['crop'] = sorted(res4)
 
 
         return Response(ret_dict, status=status.HTTP_200_OK)

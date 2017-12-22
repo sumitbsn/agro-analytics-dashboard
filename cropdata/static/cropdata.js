@@ -17,10 +17,13 @@ var resultController = function($scope, $log, $http, $location){
         showFilter: false,
        // year_options: [2008, 2009, 2010, 2011, 2012, 2013],
         year_options: ['ALL'],
-
         default_year: 'ALL',
         district_options: ['ALL'],
-        default_district: 'ALL'
+        default_district: 'ALL',
+        season_options: ['ALL'],
+        default_season: 'ALL',
+        crop_options: ['ALL'],
+        default_crop: 'ALL'
     }
     $scope.config = {
         has_prev: false,
@@ -66,12 +69,18 @@ var resultController = function($scope, $log, $http, $location){
         $scope.yearList = response.data.year;
         // console.log($scope.yearList);
         $scope.districtList = response.data.district;
+        $scope.seasonList = response.data.season;
+        $scope.cropList = response.data.crop;
 
         $scope.initial.year_options = ['ALL'];
         $scope.initial.district_options = ['ALL'];
+        $scope.initial.season_options = ['ALL'];
+        $scope.initial.crop_options = ['ALL'];
 
         $scope.initial.year_options = $scope.initial.year_options.concat($scope.yearList);
         $scope.initial.district_options = $scope.initial.district_options.concat($scope.districtList);
+        $scope.initial.season_options = $scope.initial.season_options.concat($scope.seasonList);
+        $scope.initial.crop_options = $scope.initial.crop_options.concat($scope.cropList);
         //$scope.md5List.selected = {};
         $('#paginationStatusLoader').remove();
         $scope.dataReady = true;
@@ -92,7 +101,7 @@ var resultController = function($scope, $log, $http, $location){
         $scope.dataReady = false;
         //$('#panelData').append(dataLoader.replace('%dataLoaderId%', 'paginationStatusLoader'));
         $http({
-            url: '/cropdataapi/?count='+$scope.initial.curShowPerPage+'&page='+page+'&year='+$scope.initial.default_year+'&district='+$scope.initial.default_district,
+            url: '/cropdataapi/?count='+$scope.initial.curShowPerPage+'&page='+page+'&year='+$scope.initial.default_year+'&district='+$scope.initial.default_district+'&season='+$scope.initial.default_season+'&crop='+$scope.initial.default_crop,
             method: 'GET',
         }).then(getPaginationComplete, onError);
     }

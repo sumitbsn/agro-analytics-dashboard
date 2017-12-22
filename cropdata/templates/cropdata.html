@@ -16,7 +16,7 @@
     {% verbatim %}
         <div ng-app="resultViewer">
             <div ng-controller="resultController">
-                <div class="row"  style="background-color:#FCE8FF;">
+                
 
 
                     <div class="col-lg-12" style="padding-top:1%;">
@@ -45,6 +45,18 @@
                                <span style="text-align:center;font-size:13px;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; District:
                                 <select style="color:black;width:6%;font-weight:normal !important;font-size:12px;" ng-change="pagination(true, true)"
                                         ng-model="initial.default_district" ng-options="count as count for count in initial.district_options">                                   
+                                </select>
+                                </span>
+
+                                <span style="text-align:center;font-size:13px;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Season:
+                                <select style="color:black;width:6%;font-weight:normal !important;font-size:12px;" ng-change="pagination(true, true)"
+                                        ng-model="initial.default_season" ng-options="count as count for count in initial.season_options">                                   
+                                </select>
+                                </span>
+
+                                <span style="text-align:center;font-size:13px;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Crop:
+                                <select style="color:black;width:6%;font-weight:normal !important;font-size:12px;" ng-change="pagination(true, true)"
+                                        ng-model="initial.default_crop" ng-options="count as count for count in initial.crop_options">                                   
                                 </select>
                                 </span>
 
@@ -81,7 +93,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <span style="color:grey;font-size:9px;font-weight:thin;">click on row to open full detail.</span>
+                            <!-- <span style="color:grey;font-size:9px;font-weight:thin;">click on row to open full detail.</span> -->
                         </div>
 
 
@@ -112,115 +124,7 @@
                     </div>
                 </div>
 
-                <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class=" panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title" style="color:#FFFFFF;">
-                                        <i class="fa fa-list-ol"></i> &nbsp;&nbsp;&nbsp;&nbsp;Full Detail for: {{selectedMd5}}
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    </h3>
-                                </div>
-                                <div style="min-height: 40%;">
-                                    <div ng-show="detailReady">
-                                        <div class="row" style="padding:3%;">
-                                            <div>
-                                                <div>
-                                                    <span style="color:#558B2F;font-weight:bold;font-size:16px;cursor:pointer;" ng-click="sampleInfoShow = !sampleInfoShow">
-                                                        <span style="color:grey !important" ng-show="sampleInfoShow"><i class="fa fa-minus-square"></i></span>
-                                                        <span style="color:grey !important" ng-hide="sampleInfoShow"><i class="fa fa-plus-square"></i></span>
-
-                                                        Sample Info:</span>
-                                                </div>
-                                                <div style="" ng-show="sampleInfoShow">
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">DB_id:</span> <span class="detailA">{{detail.sample_info.id}}</span>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">uploaded_on:</span> <span class="detailA">{{detail.sample_info.uploaded_on | date:"yyyy-MM-dd HH:mm:ss" : '+1100'}}</span>
-                                                    </div>
-
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">customer_name:</span> <span class="detailA">{{detail.sample_info.customer_name}}</span>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">Malware Type:</span> <span class="detailA {{detail.sample_info.malware_type}}">{{detail.sample_info.malware_type}}</span>
-                                                    </div>
-
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">country:</span> <span class="detailA">{{detail.sample_info.country}}</span>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">jira_tickets:</span> <span class="detailA">{{detail.sample_info.jira_tickets}}</span>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">event_at :</span> <span class="detailA">{{detail.sample_info.event_at | date:"yyyy-MM-dd HH:mm:ss" : '+1100'}}</span>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">Industry :</span> <span class="detailA">{{detail.sample_info.industry}}</span>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">Manually processed by:</span> <span class="detailA">{{detail.processed_info.processed_by}}</span>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">Hostid:</span> <span class="detailA">{{detail.sample_info.hostid}}</span>
-                                                    </div>
-
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">Entered At:</span> <span class="detailA">{{detail.sample_info.entry_at  | date:"yyyy-MM-dd HH:mm:ss"}}</span>
-                                                    </div>
-
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">Family_name_given_by:</span> <span class="detailA">{{detail.sample_info.family_name_processed_by}}</span>
-                                                    </div>
-
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">matched_at:</span> <span class="detailA" style="font-size:12px !important;">{{detail.sample_info.matched_at | date:"yyyy-MM-dd HH:mm:ss" : '+1100'}}</span>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">reported_at:</span> <span class="detailA" style="font-size:12px !important;">{{detail.sample_info.reported_at | date:"yyyy-MM-dd HH:mm:ss" : '+1100'}}</span>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">OS:</span> <span class="detailA" style="font-size:12px !important;">{{detail.sample_info.os}}</span>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">rule_version:</span> <span class="detailA" style="font-size:12px !important;">{{detail.sample_info.rule_version}}</span>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">engine_version:</span> <span class="detailA" style="font-size:12px !important;">{{detail.sample_info.engine_version}}</span>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">Internal_Detail_id:</span> <span class="detailA" style="font-size:12px !important;">{{detail.sample_info.detail_id}}</span>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">Internal_Summary_id:</span> <span class="detailA" style="font-size:12px !important;">{{detail.sample_info.summary_id}}</span>
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <span class="detailQ">Whitelist_version:</span> <span class="detailA">{{detail.sample_info.whitelist_version}}</span>
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <span class="detailQ">os_correlation_id:</span> <span class="detailA" style="font-size:12px !important; word-wrap: break-word;">{{detail.sample_info.os_correlation_id}}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div ng-hide="detailReady">
-                                        <div class="loading" id="detailLoader">
-                                            <div class="loading-bar"></div>
-                                            <div class="loading-bar"></div>
-                                            <div class="loading-bar"></div>
-                                            <div class="loading-bar"></div>
-                                        </div> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-            
-
-            </div>
+        
         </div>
         <br/><br/>
     {% endverbatim %}
