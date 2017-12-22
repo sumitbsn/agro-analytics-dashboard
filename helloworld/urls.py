@@ -21,6 +21,7 @@ from cropdata import views as c
 import cropdata.views
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
+from django.http import HttpResponseRedirect, HttpResponse
 
 # handler404 = 'views.my_404_view'
 # handler404 = 'mysite.views.my_custom_page_not_found_view'
@@ -62,4 +63,5 @@ urlpatterns = [
     # url(r'^image/$', restapi.views.imageStore.as_view(), name= 'image api'),
     url(r'^home/$', cropdata.views.BlogListView.as_view(), name='blog_list'),
     url(r'^home/(?P<pk>\w+)/$', cropdata.views.BlogDetailView.as_view(), name='blogs'),
+    url(r'^$', lambda r: HttpResponseRedirect('home/')),
 ]
