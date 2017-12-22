@@ -4,3 +4,4 @@ cropdata/migrations/*.pyc
 helloworld/*.pyc
 restapi/migrations/*.pyc
 restapi/*.pyc
+helloworld/__pycache__/*.pyc
