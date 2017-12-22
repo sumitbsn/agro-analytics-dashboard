@@ -112,7 +112,7 @@ var chart2 = function(){
         for (i = 0; i < len; i++){
             data_list.push({'name':temp_val.year[i], 'data':temp_val.value[i]})
         }
-        console.log(data_list);
+        // console.log(data_list);
         Highcharts.chart('container2', {
             chart: {
                 type: 'column'
