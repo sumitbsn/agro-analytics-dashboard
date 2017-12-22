@@ -51,6 +51,9 @@ urlpatterns = [
     
     url(r'^cropdataapi/$', cropdata.views.cropdataApi.as_view(), name='Crop Data Api'),
     url(r'^cropdata/$', cropdata.views.CropData.as_view(), name='Crop Data'),
+
+    url(r'^temperaturetableapi/$', cropdata.views.temperature_table_Api.as_view(), name='Temperature Table Api'),
+    url(r'^temperaturetable/$', cropdata.views.temperatureTable.as_view(), name='Temperature'),
     # url(r'^cropdatapassing/$', cropdata.views.cropdataPassing.as_view(), name= 'Crop Data passing api' ),
     
     # url(r'^home/$', cropdata.views.Home.as_view(), name= 'Home page Api' ),

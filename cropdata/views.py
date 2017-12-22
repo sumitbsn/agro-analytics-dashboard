@@ -125,7 +125,7 @@ class pressureChartApi(APIView):
             data['june'] = item.june
             data['july'] = item.july
             data['august'] = item.august
-            data['sepetember'] = item.september
+            data['september'] = item.september
             data['october'] = item.october
             data['november'] = item.november
             data['december'] = item.december
@@ -279,6 +279,89 @@ class CropData(APIView):
 
     def get(self, request):
         return render(request,'cropdata.html')
+
+class temperature_table_Api(APIView):
+
+    def get(self, request):
+        ret_dict = {'list': [], 'config': {'has_prev': None, 'has_next': None, 'cur_page': None, 'total_pages': None}}        
+
+        count_per_page    = request.GET.get('count', 15) 
+        page_number       = request.GET.get('page', 1)
+        year              = request.GET.get('year', None)        
+        district          = request.GET.get('district', None)
+
+        treated_obj_list  = Temperature.objects.all().values('id', 
+                                                        'district',
+                                                        'year',
+                                                        'january',
+                                                        'february',
+                                                        'march',
+                                                        'april',
+                                                        'may',
+                                                        'june',
+                                                        'july',
+                                                        'august',
+                                                        'september',
+                                                        'october',
+                                                        'november',
+                                                        'december').order_by('id')
+        
+
+        if year is not None and year != 'ALL':
+            treated_obj_list = treated_obj_list.filter(year=year)
+        if district is not None and district != 'ALL':
+            treated_obj_list = treated_obj_list.filter(district=district)
+
+
+        paginator         = Paginator(treated_obj_list, count_per_page)
+        try:
+            corr_id_list  = paginator.page(page_number)
+        except PageNotAnInteger:
+            corr_id_list  = paginator.page(1)
+        except EmptyPage:
+            corr_id_list  = paginator.page(paginator.num_pages)
+
+        ret_dict['config']['has_prev']      = corr_id_list.has_previous()
+        ret_dict['config']['has_next']      = corr_id_list.has_next()
+        ret_dict['config']['cur_page']      = corr_id_list.number
+        ret_dict['config']['total_pages']   = corr_id_list.paginator.num_pages
+
+        # today   = datetime.datetime.today()
+
+        for row in corr_id_list:
+            temp_dict = {
+                        'sample_info' : {
+                                        'id':                          row['id'],
+                                        'district':                    row['district'], 
+                                        'year':                        row['year'],
+                                        'january':                     row['january'],
+                                        'february':                    row['february'], 
+                                        'march':                       row['march'],
+                                        'april':                       row['april'],
+                                        'may':                         row['may'],
+                                        'june':                        row['june'],
+                                        'july':                        row['july'],
+                                        'august':                      row['august'],
+                                        'september':                   row['september'],
+                                        'october':                     row['october'],
+                                        'november':                    row['november'],
+                                        'december':                    row['december'],
+                                    }
+            }
+            ret_dict['list'].append(temp_dict)
+
+        res1 = Temperature.objects.values_list('district', flat=True).distinct()
+        res2 = Temperature.objects.values_list('year', flat=True).distinct().order_by('year')
+
+        ret_dict['district'] = sorted(res1)
+        ret_dict['year'] = sorted(res2)
+
+        return Response(ret_dict, status=status.HTTP_200_OK)
+
+class temperatureTable(APIView):
+
+    def get(self, request):
+        return render(request,'temperature_table.html')
 
 class cropdataPassing(APIView):
     def get(self, request):
