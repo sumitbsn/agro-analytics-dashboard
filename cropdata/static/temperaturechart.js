@@ -77,6 +77,9 @@ var chart1 = function(){
                     text: 'Temperature (°C)'
                 }
             },
+             credits: {
+                enabled: false
+            },
             plotOptions: {
                 line: {
                     dataLabels: {
@@ -139,6 +142,9 @@ var chart2 = function(){
                 title: {
                     text: 'Temperature (°C)'
                 }
+            },
+            credits: {
+                enabled: false
             },
             legend: {
                 enabled: false

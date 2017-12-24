@@ -29,12 +29,12 @@
 
       .custom-select select {
           display: inline-block;
-          border: 2px solid #bbb;
+          border: 1px solid #bbb;
           padding: 4px 3px 3px 5px;
           margin: 0;
           font: inherit;
           outline:none; /* remove focus ring from Webkit */
-          line-height: 1.2;
+          line-height: 1.0;
           background: #FFFFFF;
           
           -webkit-appearance:none; /* remove the strong OSX influence from Webkit */
@@ -62,7 +62,7 @@
           line-height: 30px;
           padding: 0 7px;
           background: #bbb;
-          color: white;
+          color: black;
           
           pointer-events:none;
           
@@ -84,21 +84,22 @@
 
 {% block content %}
   <div class="container">
-    <h2>Pressure Visual Line Chart</h2>
+    <h3>Pressure Visual Line Chart</h3>
     <p></p>
     <div class="panel-group">
       <div class="panel panel-default">
         <div class="panel-heading" style="background: #221F1F">
-          <span style="color: #fff">District</span>
+          <span style="font-size:13px;color: #fff">District</span>
           <label class="custom-select">
-          <select name="month" id="dis1"> </select>
+          <select style="text-align-last:center;font-size:12px;" name="month" id="dis1"> </select>
           </label>
-
-          <span style="color: #fff">Year</span>
+          &nbsp;
+          <span style="font-size:13px;color: #fff">Year:</span>
           <label class="custom-select">
-          <select name="year" id="year1"> <!-- onchange="chart1()"> --></select>
+          <select style="text-align-last:center;font-size:12px;" name="year" id="year1"> <!-- onchange="chart1()"> --></select>
           </label>
-          <button type="button" onclick="chart1()">Submit</button>
+          &nbsp;
+          <button style="text-align-last:center;font-size:13px;" type="button" onclick="chart1()">Submit</button>
         </div>
         <div class="panel-body"> 
           <div id="container3" style="max-width: 1100px; max-height: 800px; margin: 0 auto"></div>
@@ -107,20 +108,21 @@
     </div>
   </div>
   <div class="container"> 
-    <h2> Pressure visual Bar chart</h2> 
+    <h3> Pressure visual Bar chart</h3> 
     <div class="panel-group">
       <div class="panel panel-default">
         <div class="panel-heading" style="background: #221F1F">
-          <span style="color: #fff">District</span>
+          <span style="text-align:center;font-size:13px;">District:</span>
           <label class="custom-select">
-          <select name="month" id="dis2"></select>
+          <select style="text-align-last:center;font-size:12px;" name="month" id="dis2"></select>
           </label>
-          
-          <span style="color: #fff">Year</span>
+          &nbsp;
+          <span style="text-align:center;font-size:13px;">Year</span>
           <label class="custom-select">
-          <select name="year" id="year2"> <!-- onchange="chart1()"> --></select>
+          <select style="text-align-last:center;font-size:12px;" name="year" id="year2"> <!-- onchange="chart1()"> --></select>
           </label>
-          <button type="button" onclick="chart2()">Submit</button>
+          &nbsp;
+          <button style="text-align-last:center;font-size:13px;" type="button" onclick="chart2()">Submit</button>
         </div>
         <div class="panel-body"> 
           <div id="container4"><!-- Plotly chart will be drawn inside this DIV --></div>
