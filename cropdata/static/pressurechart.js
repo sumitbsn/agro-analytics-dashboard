@@ -76,6 +76,9 @@ var chart1 = function(){
                     text: 'Pressure (mb)'
                 }
             },
+            credits: {
+                enabled: false
+            },
             plotOptions: {
                 line: {
                     dataLabels: {
@@ -138,6 +141,9 @@ var chart2 = function(){
                 title: {
                     text: 'Pressure (mb)'
                 }
+            },
+            credits: {
+                enabled: false
             },
             legend: {
                 enabled: false
