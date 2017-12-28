@@ -2,47 +2,51 @@
 {% load staticfiles %}
 {% block title %} Detection Verification Dashboard {% endblock title %}
 
-{% block head %}
+{% block headc %}
 <!-- <link href="{% static 'das/css/stats.css' %}" rel="stylesheet">
 <link href="{% static 'das/css/indexStyle.css' %}" rel="stylesheet">
 <script src="{% static 'das/js/constants.js' %}"></script> -->
-{% endblock head %}
+
+{% endblock headc %}
 
 {% block content %}
 
-
-
+<h2 style="font-weight:normal;text-align: center;
+    border-bottom:1px solid #bbb;
+    padding:0 0 10px 0;">AgroAnalytics Blog</h2>
 <div class="container">
-	<div class="row" style="margin-left: 25px;margin-top: 25px;margin-right: 25px;">
+	<div class="row" style="margin-left: 5px;margin-top: 25px;margin-right: 5px;">
 		<div class="col-sm-9">
 			<div>
 				{% for blog in page_obj %}
 					<div class="well well-sm" style="background-color:#f4f8f9;border-color:#f4f8f9;">
-						<h3 style="color:#f441f1;">{{ blog.title }}</h3>
+						<h3 ><a style="" href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h3>
+						<!-- <h3 class="list-group-item"><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h3> -->
 						<h4><small style="color:#42d1f4;"> {{ blog.entry_time }} by <b> {{ blog.user }} </b></small></h4></br>
-						<p>
-						<!-- class="lead" -->
-							
-								<p  class="mb-0-sm">
-								{{ blog.body }}
+						
+						
+								<p style="white-space: pre-line;" class="mb-0-sm">
+									{{ blog.body|truncatewords:135 }}
 								</p>
-								
+						
 							
-						</p>
+						
 					</div>
 				{% endfor %}
 
 
 				{% block pagination %}
 				  {% if is_paginated %}
-					  <div class="pagination">
+					  <div  class="pagination">
 						  <span class="page-links">
 							  {% if page_obj.has_previous %}
 								  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
 							  {% endif %}
+							  
 							  <span class="page-current">
 								  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
 							  </span>
+							  
 							  {% if page_obj.has_next %}
 								  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
 							  {% endif %}
@@ -65,7 +69,18 @@
 					{% endfor %}
 				</ul>
 			</div>
+			<!-- <li class="list-group-item"><a href="">Post Blog </a></li> -->
+
+			<div class="well well-sm" style="background-color:#f4f8f9;border-color:#000;">
+		
+					
+					<li class="list-group-item"><a href="">Post Blog </a></li>
+					
+				
+			</div>
 		</div>
+
+		
 	</div>
 </div>
 

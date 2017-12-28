@@ -14,6 +14,9 @@ from django.template import RequestContext
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.conf import settings
+import operator
+from functools import reduce
+from django.db.models import Q
 import os
 
 
@@ -541,3 +544,18 @@ def handler404(request):
     response = render_to_response('404.html', {}, context_instance=RequestContext(request))
     response.status_code = 404
     return response
+
+
+class BlogSearchListView(APIView):
+    """
+    Display a Blog List page filtered by the search query.
+    """
+    def get(self, request):
+        query = self.request.GET.get('q')
+        print(query)
+        #return Response("success", status=status.HTTP_200_OK)
+
+        recentPost = Blog.objects.order_by('entry_time')[:getattr(settings, "RECENT_POST_COUNT", 5)][::-1]
+        page_obj = Blog.objects.filter(Q(title__icontains=query)  | Q(body__icontains=query)  ).order_by('entry_time')
+        
+        return render(request, 'blog_list.html', {'page_obj':page_obj, 'recentPost':recentPost})

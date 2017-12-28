@@ -69,5 +69,6 @@ urlpatterns = [
     # url(r'^image/$', restapi.views.imageStore.as_view(), name= 'image api'),
     url(r'^home/$', cropdata.views.BlogListView.as_view(), name='blog_list'),
     url(r'^home/(?P<pk>\w+)/$', cropdata.views.BlogDetailView.as_view(), name='blogs'),
+    url(r'^blogsearch/$', cropdata.views.BlogSearchListView.as_view(), name='blog search list view'),
     url(r'^$', lambda r: HttpResponseRedirect('home/')),
 ]
