@@ -26,8 +26,8 @@ SECRET_KEY = 'khi$my9+t1_hp0au$57*7c9ljhgml8a*9r7j6ko@sl=lxj9#=f'
 DEBUG = True
 #TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = ['192.168.0.6', '127.0.0.1']
-# ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['192.168.0.6', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
