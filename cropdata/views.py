@@ -559,3 +559,9 @@ class BlogSearchListView(APIView):
         page_obj = Blog.objects.filter(Q(title__icontains=query)  | Q(body__icontains=query)  ).order_by('entry_time')
         
         return render(request, 'blog_list.html', {'page_obj':page_obj, 'recentPost':recentPost})
+
+
+class aboutMe(APIView):
+
+    def get(self, request):
+        return render(request,'aboutme.html')

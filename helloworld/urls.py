@@ -71,4 +71,5 @@ urlpatterns = [
     url(r'^home/(?P<pk>\w+)/$', cropdata.views.BlogDetailView.as_view(), name='blogs'),
     url(r'^blogsearch/$', cropdata.views.BlogSearchListView.as_view(), name='blog search list view'),
     url(r'^$', lambda r: HttpResponseRedirect('home/')),
+    url(r'^aboutme/$', cropdata.views.aboutMe.as_view(), name= 'About Me api'),
 ]
