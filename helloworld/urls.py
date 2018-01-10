@@ -15,8 +15,6 @@ Including another URLconf
 """
 from django.conf.urls import url, handler404
 from django.contrib import admin
-import restapi.views
-from restapi import views as v
 from cropdata import views as c
 import cropdata.views
 from django.views.generic.detail import DetailView
