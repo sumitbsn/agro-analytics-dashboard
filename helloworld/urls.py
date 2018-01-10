@@ -29,14 +29,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 urlpatterns = [
 
     url(r'^admin/', admin.site.urls),
-	url(r'^datadetail/$', restapi.views.dataDetail.as_view(), name='this gives user data'),
-	url(r'^userdetail/$', restapi.views.userDetail.as_view(), name='this gives user data'),
-    url(r'^usersearch/$', restapi.views.userQuery.as_view(), name='this search and gives user data'),
-    url(r'^datapassing/$', restapi.views.dataPassing.as_view(), name='pass the data'),
-    url(r'^submit_result/$', restapi.views.submitResult.as_view(), name='show result'),
-    url(r'^registration/$',v.registration, name='registration page'),
-    # url(r'^crop_data/$', restapi.views.cropData.as_view(), name='crop production details page'),
-    url(r'^cropdatadetail/$', cropdata.views.cropdataDetail.as_view(), name='crop production details page'),
+
+    # url(r'^cropdatadetail/$', cropdata.views.cropdataDetail.as_view(), name='crop production details page'),
     
     url(r'^tamilnadu/district/temperaturedetail/$', cropdata.views.temperatureDetail.as_view(), name='temperature details page'),
     url(r'^tamilnadu/district/pressuredetail/$', c.pressureDetail.as_view(), name='pressure details page'),
