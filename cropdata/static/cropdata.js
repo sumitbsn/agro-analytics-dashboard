@@ -65,7 +65,7 @@ var resultController = function($scope, $log, $http, $location){
         $scope.config.cur_page = config_dict.cur_page;
         $scope.config.total_page = config_dict.total_pages;
 
-        $scope.md5List = response.data.list;
+        $scope.dataList = response.data.list;
         $scope.yearList = response.data.year;
         // console.log($scope.yearList);
         $scope.districtList = response.data.district;
@@ -81,7 +81,7 @@ var resultController = function($scope, $log, $http, $location){
         $scope.initial.district_options = $scope.initial.district_options.concat($scope.districtList);
         $scope.initial.season_options = $scope.initial.season_options.concat($scope.seasonList);
         $scope.initial.crop_options = $scope.initial.crop_options.concat($scope.cropList);
-        //$scope.md5List.selected = {};
+        //$scope.dataList.selected = {};
         $('#paginationStatusLoader').remove();
         $scope.dataReady = true;
     }
