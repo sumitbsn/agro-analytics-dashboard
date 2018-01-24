@@ -565,3 +565,21 @@ class aboutMe(APIView):
 
     def get(self, request):
         return render(request,'aboutme.html')
+
+class blogPost(APIView):
+    def get(self, request):
+        return render(request, 'blogpost.html')
+
+class submitblogPost(APIView):
+    def post(self,request):
+        User = request.POST['user']
+        Title = request.POST['title']
+        Body = request.POST['body']
+        Entry_time = request.POST['entry_time']
+        print(Entry_time)
+        print (User)
+        q = Blog(user=User, title=Title, body=Body, entry_time=Entry_time)
+        q.save()
+        #return Response({'username':name, 'password':age}, status=status.HTTP_200_OK) 
+        # return Response("Success!!", status=status.HTTP_200_OK)
+        return HttpResponseRedirect("/home/")

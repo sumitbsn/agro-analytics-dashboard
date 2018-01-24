@@ -64,4 +64,6 @@ urlpatterns = [
     url(r'^blogsearch/$', cropdata.views.BlogSearchListView.as_view(), name='blog search list view'),
     url(r'^$', lambda r: HttpResponseRedirect('home/')),
     url(r'^aboutme/$', cropdata.views.aboutMe.as_view(), name= 'About Me api'),
+    url(r'^blogpost/$', cropdata.views.blogPost.as_view(), name= 'Blog Post api'),
+    url(r'^submitblogpost/$', cropdata.views.submitblogPost.as_view(), name= 'Blog Post submit api'),
 ]
