@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
-
+import datetime
 
 # Create your models here.
 class Cropdata(models.Model):
@@ -81,7 +81,7 @@ class Blog(models.Model):
     user = models.CharField(max_length=255,  blank=True, null=False)
     title = models.CharField(max_length=255)
     body = models.TextField()
-    entry_time = models.DateTimeField(blank=True, null=True)
+    entry_time = models.DateTimeField(auto_now_add=True, auto_now=False)
 
     @models.permalink
     def get_absolute_url(self):
