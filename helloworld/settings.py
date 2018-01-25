@@ -139,7 +139,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    '/home/sumit/Documents/agro-analytics-dashboard/static/',
+    '/home/sumit/agro-analytics-dashboard/static/',
 ]
 
 BLOG_PAGINATION_COUNT = 5
