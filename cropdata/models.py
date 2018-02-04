@@ -60,6 +60,27 @@ class Temperature(models.Model):
         managed = False
         db_table = 'temperature'
 
+class Rainfall(models.Model):
+    district = models.CharField(db_column='District', max_length=50)  # Field name made lowercase.
+    year = models.IntegerField(db_column='Year')  # Field name made lowercase.
+    january = models.DecimalField(db_column='January', max_digits=4, decimal_places=1)  # Field name made lowercase.
+    february = models.DecimalField(db_column='February', max_digits=4, decimal_places=1)  # Field name made lowercase.
+    march = models.DecimalField(db_column='March', max_digits=4, decimal_places=1)  # Field name made lowercase.
+    april = models.DecimalField(db_column='April', max_digits=4, decimal_places=1)  # Field name made lowercase.
+    may = models.DecimalField(db_column='May', max_digits=4, decimal_places=1)  # Field name made lowercase.
+    june = models.DecimalField(db_column='June', max_digits=4, decimal_places=1)  # Field name made lowercase.
+    july = models.DecimalField(db_column='July', max_digits=4, decimal_places=1)  # Field name made lowercase.
+    august = models.DecimalField(db_column='August', max_digits=4, decimal_places=1)  # Field name made lowercase.
+    september = models.DecimalField(db_column='September', max_digits=4, decimal_places=1)  # Field name made lowercase.
+    october = models.DecimalField(db_column='October', max_digits=4, decimal_places=1)  # Field name made lowercase.
+    november = models.DecimalField(db_column='November', max_digits=4, decimal_places=1)  # Field name made lowercase.
+    december = models.DecimalField(db_column='December', max_digits=4, decimal_places=1)  # Field name made lowercase.
+    id = models.AutoField(db_column='Id', primary_key=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'rainfall'
+
 
 class AuthUser(models.Model):
     password = models.CharField(max_length=128)

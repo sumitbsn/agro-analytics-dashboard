@@ -202,6 +202,56 @@ class tempdataPassing(APIView):
 
         return Response({'tdata':data}, status=status.HTTP_200_OK)
 
+class rainfallChartApi(APIView):
+
+    def get(self, request):
+        final = []
+        year = []
+        district = request.GET.get('dis', None)
+        yr = request.GET.get('year', None)
+        # print (yr)
+        # print (district)
+        if yr == "ALL":
+            res = Rainfall.objects.filter(district = district).order_by('year')
+        else:
+            res = Rainfall.objects.filter(district = district, year= yr).order_by('year')
+        
+        for item in res:
+            data = OrderedDict()
+            year.append(item.year)
+            data['january'] = item.january
+            data['february'] = item.february
+            data['march'] = item.march
+            data['april'] = item.april
+            data['may'] = item.may
+            data['june'] = item.june
+            data['july'] = item.july
+            data['august'] = item.august
+            data['sepetember'] = item.september
+            data['october'] = item.october
+            data['november'] = item.november
+            data['december'] = item.december
+            final.append(data.values())
+        #print (final)
+        temp = {'year':year, 'month': data.keys(), 'value': final}
+        return Response({'alldata':temp}, status=status.HTTP_200_OK)
+        # return Response({'all':x}, status=status.HTTP_200_OK)
+
+class rainfallChart(APIView):
+
+    def get(self, request):
+        return render(request,'rainfallchart.html')
+
+
+class rainfalldataPassing(APIView):
+    def get(self, request):
+        
+        res1 = Rainfall.objects.values_list('district', flat=True).distinct()
+        res2 = Rainfall.objects.values_list('year', flat=True).distinct()
+        data = {'dist':res1, 'yr':res2}
+
+        return Response({'rdata':data}, status=status.HTTP_200_OK)
+
 
 class cropdataApi(APIView):
 
@@ -367,6 +417,9 @@ class temperatureTable(APIView):
         return render(request,'temperature_table.html')
 
 
+
+
+
 class pressure_table_Api(APIView):
 
     def get(self, request):
@@ -477,6 +530,7 @@ class Login(APIView):
 
     def get(self, request):
         status = request.GET.get('status', '')
+        # {% if request.user.username %}
         return render(request,'login.html', {'status': status})
 
 class submitSignupdetail(APIView):

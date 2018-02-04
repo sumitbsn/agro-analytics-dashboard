@@ -40,6 +40,10 @@ urlpatterns = [
     url(r'^temperaturechartapi/$', cropdata.views.temperatureChartApi.as_view(), name='Temperature Chart Api'),
     url(r'^temperaturechart/$', cropdata.views.temperatureChart.as_view(), name='Temperature Chart'),
     url(r'^tempdatapassing/$', cropdata.views.tempdataPassing.as_view(), name= 'temperature data passing api' ),
+
+    url(r'^rainfallchartapi/$', cropdata.views.rainfallChartApi.as_view(), name='Rainfall Chart Api'),
+    url(r'^rainfallchart/$', cropdata.views.rainfallChart.as_view(), name='Rainfall Chart'),
+    url(r'^rainfalldatapassing/$', cropdata.views.rainfalldataPassing.as_view(), name= 'Rainfall data passing api' ),
     
     url(r'^cropdataapi/$', cropdata.views.cropdataApi.as_view(), name='Crop Data Api'),
     url(r'^cropdata/$', cropdata.views.CropData.as_view(), name='Crop Data'),
@@ -49,6 +53,8 @@ urlpatterns = [
 
     url(r'^pressuretableapi/$', cropdata.views.pressure_table_Api.as_view(), name='Pressure Table Api'),
     url(r'^pressuretable/$', cropdata.views.pressureTable.as_view(), name='Pressure Table'),
+
+
     # url(r'^cropdatapassing/$', cropdata.views.cropdataPassing.as_view(), name= 'Crop Data passing api' ),
     
     # url(r'^home/$', cropdata.views.Home.as_view(), name= 'Home page Api' ),
