@@ -719,3 +719,9 @@ class submitblogPost(APIView):
         #return Response({'username':name, 'password':age}, status=status.HTTP_200_OK) 
         # return Response("Success!!", status=status.HTTP_200_OK)
         return HttpResponseRedirect("/home/")
+
+
+class forgotPasswd(APIView):
+
+    def get(self, request):
+        return render(request,'forgotpasswd.html')

@@ -20,6 +20,8 @@ import cropdata.views
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth import views as auth_views
+from django.conf.urls import include
 
 # handler404 = 'views.my_404_view'
 # handler404 = 'mysite.views.my_custom_page_not_found_view'
@@ -75,4 +77,16 @@ urlpatterns = [
     url(r'^aboutme/$', cropdata.views.aboutMe.as_view(), name= 'About Me api'),
     url(r'^blogpost/$', cropdata.views.blogPost.as_view(), name= 'Blog Post api'),
     url(r'^submitblogpost/$', cropdata.views.submitblogPost.as_view(), name= 'Blog Post submit api'),
+
+
+    # url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
+   
+    
+    # url(r'^', include('mysite.urls')),
+    # url('^', include('django.contrib.auth.urls')),
+    url(r'^password_reset/$', auth_views.password_reset, {'template_name': 'password_reset_form.html'}, name='password_reset_form'),
+    url(r'^password_reset/done/$', auth_views.password_reset_done, {'template_name': 'password_reset_done.html'}, name='password_reset_done'),
+    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        auth_views.password_reset_confirm, {'template_name': 'password_reset_confirm.html'}, name='password_reset_confirm'),
+    url(r'^reset/done/$', auth_views.password_reset_complete, {'template_name': 'password_reset_complete.html'}, name='password_reset_complete'),
 ]

@@ -44,6 +44,16 @@ INSTALLED_APPS = [
 
 ]
 
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# 
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'sumitunix@gmail.com'
+EMAIL_HOST_PASSWORD = 'github@2017'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'AgroAnalytics Team <noreply@example.com>'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -73,6 +83,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'helloworld.wsgi.application'
+
 
 
 # Database
@@ -132,6 +143,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+# TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
 STATIC_URL = '/static/'
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -143,6 +156,8 @@ STATICFILES_DIRS = [
 ]
 
 BLOG_PAGINATION_COUNT = 5
+
+
 
 
 # LOGGING = {
