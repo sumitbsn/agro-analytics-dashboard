@@ -31,7 +31,7 @@
 					<h2>Comments</h2>
 						
 					
-					<form id ="mainForm" method="post" action="/submitcommentpost/">
+					<form id ="mainForm" method="post" action="/submitcommentpost/"> {% csrf_token %}
 				        
 				        <input style="width: 60%" type="text" name="author" placeholder="Author" required="required" />
 				        <br><br>
