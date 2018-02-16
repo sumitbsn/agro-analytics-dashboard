@@ -15,6 +15,7 @@
 		<div class="col-sm-9">
 			<div >
 				<div class="well well-lg" style="background-color:#f4f8f9;border-color:#f4f8f9;">
+					
 					<h3 ><a>{{ blog.title }}</a> </h3>
 					<h4><small style="color:#42d1f4;"> {{ blog.entry_time }} by <b> {{ blog.user }} </b></small></h4></br>
 			
@@ -24,27 +25,42 @@
 							{{ blog.body }}
 							</p>
 						
-				
+					
+					<br>
+
+					<h2>Comments</h2>
+						
+					
+					<form id ="mainForm" method="post" action="/submitcommentpost/">
+				        
+				        <input style="width: 60%" type="text" name="author" placeholder="Author" required="required" />
+				        <br><br>
+				        <textarea type="text" name="text" placeholder="Comment" required="" class="vLargeTextField" id="text" cols="90" rows="5"></textarea>
+			
+				        <!-- <input type="text" name="blog_id" placeholder="Blogid" required="required" /> -->
+				        <input type = "hidden" name = "blog_id" value = {{ blog.id }} />
+				        <input type = "hidden" name = "blog_url" value = {{ blog.get_absolute_url }}  />
+				        <br><br>
+				        <button type="submit" class="btn btn-primary btn-large">Post Comment</button>
+				    </form>
+
+				    <br>
+				    {% for row in auth %}
+				    	{% if row.blog_id == blog.id %}
+						    <h4><small style="color:#42d1f4;">{{ row.created_date }} by <b> {{ row.author }} </b></small></h4>
+						    	 				
+							<p >
+							{{ row.text }}
+							</p>
+							<!-- <a rel='nofollow' class='comment-reply-link' href='#comment-9842' onclick='return addComment.moveForm( "comment-9842", "9842", "respond", "3051" )' aria-label='Reply to Shaz De Vos'>Reply</a> -->
+							<a href="" class="reply">reply</a>
+							<!-- <a id="clickme" href="javascript:;">click me</a> -->
+							<br><br>
+						{% endif %}	
+					{% endfor %}
+
 				</div>
 			   
-
-				{% block pagination %}
-				  {% if is_paginated %}
-					  <div class="pagination">
-						  <span class="page-links">
-							  {% if page_obj.has_previous %}
-								  <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-							  {% endif %}
-							  <span class="page-current">
-								  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-							  </span>
-							  {% if page_obj.has_next %}
-								  <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-							  {% endif %}
-						  </span>
-					  </div>
-				  {% endif %}
-				{% endblock %}
 			</div>
 		</div>
 
@@ -68,6 +84,7 @@
 				
 			</div>
 		</div>
+
 	</div>
 </div>
 

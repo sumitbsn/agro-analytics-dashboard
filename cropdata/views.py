@@ -17,6 +17,7 @@ from django.conf import settings
 import operator
 from functools import reduce
 from django.db.models import Q
+from django.template.loader import get_template 
 import os
 
 
@@ -663,6 +664,12 @@ class BlogDetailView(DetailView):
         # Call the base implementation first to get a context
         context = super(BlogDetailView, self).get_context_data(**kwargs)
         context['recentPost'] = Blog.objects.order_by('entry_time')[:getattr(settings, "RECENT_POST_COUNT", 5)][::-1]
+
+        final = []
+        res = Comment.objects.all()
+
+        context['auth'] = res
+
         return context
 
 class BlogListView(ListView):
@@ -725,3 +732,19 @@ class forgotPasswd(APIView):
 
     def get(self, request):
         return render(request,'forgotpasswd.html')
+
+
+class submitcommentPost(APIView):
+    def post(self,request):
+        Author = request.POST['author']
+        Text = request.POST['text']
+        Blog_id = request.POST['blog_id']
+        Blog_url = request.POST['blog_url']
+        # print (Author)
+        # print (Blog_url)
+
+        q = Comment(author=Author, text=Text, blog_id=Blog_id)
+        q.save()
+        #return Response({'username':name, 'password':age}, status=status.HTTP_200_OK) 
+        # return Response("Success!!", status=status.HTTP_200_OK)
+        return HttpResponseRedirect(Blog_url)

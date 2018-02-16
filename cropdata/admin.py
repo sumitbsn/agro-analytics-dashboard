@@ -8,3 +8,5 @@ from .models import Pressure, Cropdata, Blog
 #admin.site.register(myModels)
 
 admin.site.register(Blog)
+# admin.site.register(Comment)
+# admin.site.register(Post)

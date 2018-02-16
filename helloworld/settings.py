@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'user@gmail.com'
-EMAIL_HOST_PASSWORD = 'XXXXXX'
+EMAIL_HOST_PASSWORD = 'xxxxx'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'AgroAnalytics Team <noreply@example.com>'
 
@@ -104,6 +104,9 @@ DATABASES = {
         'PASSWORD': 'sks',
         'HOST': 'localhost',
         'PORT': '',
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        }
     }
 }
 
