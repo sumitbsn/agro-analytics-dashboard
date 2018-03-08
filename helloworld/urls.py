@@ -28,7 +28,10 @@ from django.conf.urls import include
 
 urlpatterns = [
 
-    url(r'^admin/', admin.site.urls),
+    url(r'^meadmin/', admin.site.urls),
+
+    url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    url(r'^secret/', include(admin.site.urls)),
 
     # url(r'^cropdatadetail/$', cropdata.views.cropdataDetail.as_view(), name='crop production details page'),
     
