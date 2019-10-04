@@ -607,7 +607,8 @@ class Home(APIView):
 class Signup(APIView):
 
     def get(self, request):
-        return render(request,'signup.html')
+        status = request.GET.get('status', '')
+        return render(request,'signup.html', {'status': status})
 
 class Login(APIView):
 
@@ -621,13 +622,19 @@ class submitSignupdetail(APIView):
         Username = request.POST['username']
         Email = request.POST['email']
         Password = request.POST['password']
-
+        res1 = AuthUser.objects.values_list('username', flat=True).distinct()
         # print (Username)
-        user = User.objects.create_user(username=Username, email=Email, password=Password)
+        if Username in res1:
+            return HttpResponseRedirect("/signup/?status=Failed")
+            #user = User.objects.create_user(username=Username, email=Email, password=Password)
         
         #return Response({'username':name, 'password':age}, status=status.HTTP_200_OK) 
         # return Response("Success!!", status=status.HTTP_200_OK)
-        return HttpResponseRedirect("/login/?status=Success")
+            #return HttpResponseRedirect("/login/?status=Success")
+        else:
+            user = User.objects.create_user(username=Username, email=Email, password=Password)
+            return HttpResponseRedirect("/login/?status=Success")
+            #return HttpResponseRedirect("/login/?status=Failed")
 
 class submitLogindetail(APIView):
     def post(self,request):

@@ -14,7 +14,7 @@
       top: 35%;
       right: 0%;
       /*left: 20%;*/
-      /*bottom: 50%;*/
+      /*bottom: 50%;
       /*margin: -120px 0 0 -260px;*/
       width:110%;
       height:100%;
@@ -68,6 +68,12 @@
 
 {% block content %}
 
+{% if status %}
+ 
+    <h2>Registration Failed! Username is already available in database, please use different username.</h2>
+     
+{% endif %}
+
 <div class="register">
 <div class="col-md-offset-5 col-md-3">
   <div class="form-register">
@@ -81,6 +87,6 @@
   </div>
 </div>  
 </div>
-  
+
 
 {% endblock content %}
